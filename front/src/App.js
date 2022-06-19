@@ -1,10 +1,13 @@
 import React from 'react';
+import { Footer, Header, PostsView } from './container';
 
 const App = () => {
   return (
-    <div>
-      <h1>App</h1>
-    </div>
+    <>
+      <Header />
+      <PostsView />
+      <Footer />
+    </>
   );
 };
 
