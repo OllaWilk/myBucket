@@ -1,21 +1,32 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import mongoose from 'mongoose';
-import cors from 'cors';
-import dotenv from 'dotenv';
+const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const dotenv = require('dotenv');
 
-import postRoutes from './routes/posts.js';
+const postsRoutes = require('./routes/posts.js');
 
 dotenv.config();
 
+//express app
 const app = express();
 
+//config
+app.use(express.json());
 app.use(bodyParser.json({ linit: '30mb', extended: true }));
 app.use(bodyParser.urlencoded({ linit: '30mb', extended: true }));
 app.use(cors());
 
-app.use('/posts', postRoutes);
+app.use((req, res, next) => {
+  console.log(req.path, req.method);
+  next();
+});
 
+//read routes
+
+app.use('/api/posts', postsRoutes);
+
+//connect to mongodb
 const PORT = process.env.PORT || 3000;
 
 mongoose
