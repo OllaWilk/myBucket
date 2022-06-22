@@ -21,7 +21,7 @@ const PostsView = () => {
   }, []);
 
   return (
-    <section>
+    <section className="app__post-view-wrap">
       {posts && posts.map((post) => <Post key={post._id} post={post} />)}
       <Form />
     </section>
