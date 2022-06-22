@@ -1,13 +1,20 @@
 import React from 'react';
-import { Footer, Header, PostsView } from './container';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Footer, Header } from './container';
+import { Home, Post } from './pages';
 
 const App = () => {
   return (
-    <>
-      <Header />
-      <PostsView />
-      <Footer />
-    </>
+    <div>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/post" element={<Post />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </div>
   );
 };
 

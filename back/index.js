@@ -1,5 +1,5 @@
 const express = require('express');
-const bodyParser = require('body-parser');
+
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
@@ -13,8 +13,6 @@ const app = express();
 
 //config
 app.use(express.json());
-app.use(bodyParser.json({ linit: '30mb', extended: true }));
-app.use(bodyParser.urlencoded({ linit: '30mb', extended: true }));
 app.use(cors());
 
 app.use((req, res, next) => {
@@ -30,10 +28,7 @@ app.use('/api/posts', postsRoutes);
 const PORT = process.env.PORT || 3000;
 
 mongoose
-  .connect(process.env.CONNECTDB_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(process.env.CONNECTDB_URL)
   .then(() =>
     app.listen(PORT, () =>
       console.log(`App runs on: http://localhost:${PORT}/`)
