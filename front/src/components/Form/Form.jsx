@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
+import { usePostsContext } from '../../hooks/usePostsContext';
+
 import './Form.scss';
 
 const Form = () => {
+  const { dispatch } = usePostsContext();
+
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [selectedFile, setSelectedFile] = useState('');
@@ -12,11 +16,11 @@ const Form = () => {
 
     const post = { title, author, selectedFile };
 
-    const response = await fetch('/api/posts', {
+    const response = await fetch('http://localhost:3000/api/posts', {
       method: 'POST',
       body: JSON.stringify(post),
       headers: {
-        'Content-type': 'application/json',
+        'Content-Type': 'application/json',
       },
     });
 
@@ -30,7 +34,8 @@ const Form = () => {
       setAuthor('');
       setSelectedFile('');
       setError(null);
-      console.log('new post added', json);
+      console.log('new post added');
+      dispatch({ type: 'CREATE_POST', payload: json });
     }
   };
 
