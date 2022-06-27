@@ -10,6 +10,7 @@ const Form = () => {
   const [author, setAuthor] = useState('');
   const [selectedFile, setSelectedFile] = useState('');
   const [error, setError] = useState(null);
+  const [emptyFields, setEmptyFields] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,13 +29,14 @@ const Form = () => {
 
     if (!response.ok) {
       setError(json.error);
+      setEmptyFields(json.emptyFields);
     }
     if (response.ok) {
       setTitle('');
       setAuthor('');
       setSelectedFile('');
       setError(null);
-      console.log('new post added');
+      setEmptyFields([]);
       dispatch({ type: 'CREATE_POST', payload: json });
     }
   };
@@ -48,16 +50,21 @@ const Form = () => {
           type="text"
           onChange={(e) => setTitle(e.target.value)}
           value={title}
+          className={emptyFields.includes('title') ? 'error' : ''}
         />
+        <label>Add author:</label>
         <input
           type="text"
           onChange={(e) => setAuthor(e.target.value)}
           value={author}
+          className={emptyFields.includes('author') ? 'error' : ''}
         />
+        <label>Add file:</label>
         <input
           type="text"
           onChange={(e) => setSelectedFile(e.target.value)}
           value={selectedFile}
+          className={emptyFields.includes('selectedFile') ? 'error' : ''}
         />
         <button>Add post</button>
         {error && <div>{error}</div>}

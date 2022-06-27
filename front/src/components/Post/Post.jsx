@@ -24,7 +24,6 @@ const Post = ({ post }) => {
       <h4>{post.title}</h4>
       <p>{post.createdAt}</p>
       <span onClick={handleClick}>DELETE</span>
-      {console.log()}
     </div>
   );
 };
