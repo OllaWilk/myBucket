@@ -20,11 +20,9 @@
 }
 
 @mixin gradient {
-  background: linear-gradient(45deg, $color-gradient-one, $color-gradient-two);
-  background-size: 100% 100%;
-  animation: gradient 9s ease infinite;
-  // width: 100%;
-  height: 10vh;
+  background: linear-gradient(-45deg, $color-gradient-one, $color-gradient-two);
+  background-size: 130% 100%;
+  animation: gradient 11s ease infinite;
 }
 
 /*Brakepoints for responsive leyout*/

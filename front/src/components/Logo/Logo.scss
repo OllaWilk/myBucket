@@ -1,0 +1,17 @@
+@import '../../styles/settings.scss';
+
+.app__logo {
+  display: flex;
+  align-items: center;
+  .app__square {
+    border: 4px solid $color-light;
+    width: 25px;
+    height: 25px;
+    margin-right: 0.5rem;
+  }
+
+  h3 {
+    text-transform: uppercase;
+    color: $color-light;
+  }
+}

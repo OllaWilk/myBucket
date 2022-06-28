@@ -1,0 +1,11 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/settings.scss';
+
+.app__header {
+  width: 100vw;
+  @include gradient;
+  color: $color-light;
+  @include flex(row, center, space-between);
+  height: 64px;
+  padding: 2rem 6rem;
+}

@@ -1,9 +1,22 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './Navbar.scss';
 
 const Navbar = () => {
-  return <nav>Navigation</nav>;
+  return (
+    <nav>
+      {
+        <ul className="app__navigation-top-bar">
+          {['home', 'about'].map((item) => (
+            <li key={item}>
+              <Link to={`/${item}`}>{item}</Link>
+            </li>
+          ))}
+        </ul>
+      }
+    </nav>
+  );
 };
 
 export default Navbar;
