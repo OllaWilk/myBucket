@@ -2,6 +2,7 @@
 @import '../../styles/settings.scss';
 
 .app__header {
+  position: fixed;
   width: 100vw;
   @include gradient;
   color: $color-light;

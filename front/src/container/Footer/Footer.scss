@@ -1,0 +1,26 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/settings.scss';
+
+.app__footer {
+  background-color: $color-dark;
+  color: $color-light;
+  opacity: 0.8;
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+
+  @include flex(row, center, space-between);
+  padding: 1rem 6rem;
+
+  .app__footer-links {
+    display: flex;
+    align-items: baseline;
+
+    svg {
+      height: 15px;
+    }
+    a {
+      padding-left: 1rem;
+    }
+  }
+}
