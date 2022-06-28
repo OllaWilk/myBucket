@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Footer, Header } from './container';
 import { Home, Post } from './pages';
 
+import './styles/global.scss';
+
 const App = () => {
   return (
     <div>
