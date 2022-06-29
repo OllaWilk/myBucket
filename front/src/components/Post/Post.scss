@@ -1,1 +1,10 @@
+@import '../../styles/settings.scss';
+@import '../../styles/mixins.scss';
 
+.app__posts {
+  background-color: $color-light;
+  margin: 2rem 2rem 2rem 0;
+  padding: 2rem;
+  height: 155px;
+  box-shadow: $shadow;
+}

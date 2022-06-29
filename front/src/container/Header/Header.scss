@@ -9,4 +9,5 @@
   @include flex(row, center, space-between);
   height: 64px;
   padding: 2rem 6rem;
+  z-index: 999;
 }

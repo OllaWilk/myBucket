@@ -7,7 +7,7 @@ import './styles/global.scss';
 
 const App = () => {
   return (
-    <div>
+    <>
       <BrowserRouter>
         <Header />
         <Routes>
@@ -15,7 +15,7 @@ const App = () => {
         </Routes>
         <Footer />
       </BrowserRouter>
-    </div>
+    </>
   );
 };
 

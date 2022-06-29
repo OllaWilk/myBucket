@@ -1,0 +1,27 @@
+@import '../../styles/settings.scss';
+@import '../../styles/mixins.scss';
+
+.app__cart-form {
+  @include flex(column, flex-start, center);
+  width: 100%;
+
+  label {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: $font-bold;
+    margin: 1rem 0 0 0;
+    color: $color-main;
+  }
+
+  input {
+    padding: 1rem 0 1.5rem 0;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid $color-main;
+    font-size: $base-size;
+    outline: none;
+    &::placeholder {
+      font-size: $base-size;
+    }
+  }
+}
