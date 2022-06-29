@@ -11,6 +11,7 @@ const Form = () => {
   const [author, setAuthor] = useState('');
   const [selectedFile, setSelectedFile] = useState('');
   const [error, setError] = useState(null);
+  const [emptyFields, setEmptyFields] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,18 +30,20 @@ const Form = () => {
 
     if (!response.ok) {
       setError(json.error);
+      setEmptyFields(json.emptyFields);
     }
     if (response.ok) {
       setTitle('');
       setAuthor('');
       setSelectedFile('');
       setError(null);
-      console.log('new post added');
+      setEmptyFields([]);
       dispatch({ type: 'CREATE_POST', payload: json });
     }
   };
 
   return (
+
     <form onSubmit={handleSubmit}>
       <h3>New experiences or activities to try:</h3>
       <CartForm lebel={'Title'} setValue={setTitle} value={title} />
