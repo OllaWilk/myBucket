@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { CartForm } from '..';
 import { usePostsContext } from '../../hooks/usePostsContext';
 
 import './Form.scss';
@@ -43,21 +42,34 @@ const Form = () => {
   };
 
   return (
-
-    <form onSubmit={handleSubmit}>
-      <h3>New experiences or activities to try:</h3>
-      <CartForm lebel={'Title'} setValue={setTitle} value={title} />
-      <CartForm lebel={'Author'} setValue={setAuthor} value={author} />
-      <CartForm
-        lebel={'File'}
-        setValue={setSelectedFile}
-        value={selectedFile}
-      />
-      <button>
-        <p>Submit</p>
-      </button>
-      {error && <div>{error}</div>}
-    </form>
+    <div className="app__form-wrap">
+      <form onSubmit={handleSubmit}>
+        <h3>add</h3>
+        <label>Add title:</label>
+        <input
+          type="text"
+          onChange={(e) => setTitle(e.target.value)}
+          value={title}
+          className={emptyFields.includes('title') ? 'error' : ''}
+        />
+        <label>Add author:</label>
+        <input
+          type="text"
+          onChange={(e) => setAuthor(e.target.value)}
+          value={author}
+          className={emptyFields.includes('author') ? 'error' : ''}
+        />
+        <label>Add file:</label>
+        <input
+          type="text"
+          onChange={(e) => setSelectedFile(e.target.value)}
+          value={selectedFile}
+          className={emptyFields.includes('selectedFile') ? 'error' : ''}
+        />
+        <button>Add post</button>
+        {error && <div>{error}</div>}
+      </form>
+    </div>
   );
 };
 
