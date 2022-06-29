@@ -1,0 +1,11 @@
+@import '../../styles/settings.scss';
+
+.app__navigation-top-bar {
+  display: flex;
+  li {
+    padding: 0 0 0 3rem;
+    text-transform: uppercase;
+    font-weight: $font-bold;
+    letter-spacing: 1px;
+  }
+}

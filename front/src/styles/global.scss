@@ -1,0 +1,48 @@
+@import './settings.scss';
+@import './mixins.scss';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: $color-background;
+  font-family: $default-font;
+  font-size: $base-size;
+  line-height: $line-height;
+  color: $color-dark;
+  text-align: center;
+}
+
+.container {
+  position: relative;
+  margin: 0 auto;
+  width: 80%;
+
+  @include sm-max {
+    padding: 0 16px;
+  }
+}
+
+a,
+a:hover {
+  text-decoration: none;
+  color: unset;
+}
+
+ul {
+  text-decoration: none;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  text-decoration: none;
+  list-style-type: none;
+}

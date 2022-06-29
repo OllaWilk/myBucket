@@ -1,0 +1,13 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/settings.scss';
+
+.app__header {
+  position: fixed;
+  width: 100vw;
+  @include gradient;
+  color: $color-light;
+  @include flex(row, center, space-between);
+  height: 64px;
+  padding: 2rem 6rem;
+  z-index: 999;
+}

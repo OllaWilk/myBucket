@@ -1,17 +1,16 @@
 import React from 'react';
+import { Navbar, Logo } from '../../components';
 import { Link } from 'react-router-dom';
 
 import './Header.scss';
 
 const Header = () => {
   return (
-    <header>
-      <nav className="container">
-        <p>header section</p>
-        <Link to="/">
-          <h1>Home</h1>
-        </Link>
-      </nav>
+    <header className="app__header">
+      <Link to="/home">
+        <Logo />
+      </Link>
+      <Navbar />
     </header>
   );
 };

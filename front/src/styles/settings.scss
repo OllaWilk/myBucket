@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Chivo&family=Montserrat:wght@200;300;400;500;600&display=swap');
+
+// $color-gradient-one: #ddffca;
+// $color-gradient-two: #a5f8fe;
+
+$color-gradient-one: #c22ed0;
+$color-gradient-two: #5ffae0;
+
+$color-main: #d2d2d2;
+$color-dark: #000000;
+$color-light: #ffffff;
+$color-background: #dedede;
+
+$shadow: 0px 0px 12px rgba(0, 0, 0, 0.1);
+
+/*fonts*/
+
+$default-font: 'Chivo', sans-serif;
+$logo-font: 'Montserrat', sans-serif;
+
+$font-light: 300;
+$font-normal: 400;
+$font-semibold: 500;
+$font-bold: 700;
+
+$base-size: 16px;
+$header-size: 2.5rem;
+
+$line-height: 1.7;
+
+/* Animation */
+$transition: all 0.3s ease-in-out;
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/*Another*/
+$radius: 4px;
+
+/*respons*/
+
+$screen-sm: 575.98px;
+$screen-md: 767.98px;
+$screen-lg: 991.98px;
+$screen-xl: 1199.98px;
+$screen-xxl: 1400px;

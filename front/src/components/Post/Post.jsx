@@ -20,7 +20,7 @@ const Post = ({ post }) => {
   };
 
   return (
-    <div className="post">
+    <div className="app__posts">
       <h4>{post.title}</h4>
       <p>{post.createdAt}</p>
       <span onClick={handleClick}>DELETE</span>

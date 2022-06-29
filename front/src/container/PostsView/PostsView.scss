@@ -1,5 +1,17 @@
-.app__post-view-wrap {
-  display: flex;
+@import '../../styles/settings.scss';
+@import '../../styles/mixins.scss';
 
-  background-color: red;
+.app__posts-wrap {
+  position: absolute;
+  left: 0;
+  margin-top: 64px;
+  min-width: 66.66%;
+}
+
+.app__form-wrap {
+  position: fixed;
+  top: 64px;
+  right: 0;
+  margin-right: 10%;
+  max-width: 27%;
 }

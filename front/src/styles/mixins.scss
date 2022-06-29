@@ -1,0 +1,63 @@
+@import '../styles/settings.scss';
+
+@mixin flex($flex-direction, $align-items, $justify-content) {
+  display: flex;
+  flex-direction: $flex-direction;
+  align-items: $align-items;
+  justify-content: $justify-content;
+}
+
+@mixin button($btn-bg, $btn-text, $btn-border, $width) {
+  background-color: $btn-bg;
+  color: $btn-text;
+  border: 1px solid $btn-border;
+  width: $width;
+
+  &:hover {
+    background: $btn-text;
+    color: $btn-bg;
+  }
+}
+
+@mixin gradient {
+  background: linear-gradient(-45deg, $color-gradient-one, $color-gradient-two);
+  background-size: 130% 100%;
+  animation: gradient 11s ease infinite;
+}
+
+/*Brakepoints for responsive leyout*/
+
+// Small devices
+@mixin sm-max {
+  @media (max-width: #{$screen-sm}) {
+    @content;
+  }
+}
+
+// Medium devices
+@mixin md-max {
+  @media (min-width: #{$screen-md}) {
+    @content;
+  }
+}
+
+// Large devices
+@mixin lg-max {
+  @media (max-width: #{$screen-lg}) {
+    @content;
+  }
+}
+
+// Extra large devices
+@mixin xl-max {
+  @media (max-width: #{$screen-xl}) {
+    @content;
+  }
+}
+
+// Super extra large devices
+@mixin xxl-min {
+  @media (min-width: #{$screen-xxl}) {
+    @content;
+  }
+}

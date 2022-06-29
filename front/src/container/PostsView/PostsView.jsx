@@ -27,9 +27,13 @@ const PostsView = () => {
   }, [dispatch]);
 
   return (
-    <section className="app__post-view-wrap">
-      {posts && posts.map((post) => <Post key={post._id} post={post} />)}
-      <Form />
+    <section className="container">
+      <div className="app__posts-wrap">
+        {posts && posts.map((post) => <Post key={post._id} post={post} />)}
+      </div>
+      <div className="app__form-wrap">
+        <Form />
+      </div>
     </section>
   );
 };

@@ -1,8 +1,10 @@
-.post {
-  margin: 10px;
-  background-color: #e2e2e2;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column;
-  width: 30%;
+@import '../../styles/settings.scss';
+@import '../../styles/mixins.scss';
+
+.app__posts {
+  background-color: $color-light;
+  margin: 2rem 2rem 2rem 0;
+  padding: 2rem;
+  height: 155px;
+  box-shadow: $shadow;
 }
