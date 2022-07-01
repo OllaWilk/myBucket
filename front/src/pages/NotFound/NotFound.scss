@@ -1,0 +1,24 @@
+@import '../../styles/settings.scss';
+@import '../../styles/mixins.scss';
+
+.app__notFound {
+  @include flex(column, center, center);
+  width: 100%;
+  height: 100vh;
+
+  h3 {
+    font-size: $header-size;
+    font-weight: $font-normal;
+    text-transform: uppercase;
+  }
+
+  .error-number {
+    font-size: 20vh;
+    background: -webkit-linear-gradient(
+      $color-gradient-one,
+      $color-gradient-two
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}

@@ -8,7 +8,10 @@ const Navbar = () => {
     <nav>
       {
         <ul className="app__navigation-top-bar">
-          {['home', 'about'].map((item) => (
+          <li>
+            <Link to={'/'}>Home</Link>
+          </li>
+          {['posts', 'faq'].map((item) => (
             <li key={item}>
               <Link to={`/${item}`}>{item}</Link>
             </li>

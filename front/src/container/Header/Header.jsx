@@ -7,8 +7,8 @@ import './Header.scss';
 const Header = () => {
   return (
     <header className="app__header">
-      <Link to="/home">
-        <Logo />
+      <Link to="/">
+        <Logo props={'my bucket'} />
       </Link>
       <Navbar />
     </header>

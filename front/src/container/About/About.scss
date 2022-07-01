@@ -1,0 +1,58 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/settings.scss';
+
+.app__about-page {
+  @include flex(row, center, space-between);
+  height: 100vh;
+
+  .app__about-img {
+    box-shadow: $shadow;
+    width: 40%;
+    height: 70vh;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .app__about-text {
+    @include flex(column-reverse, flex-start, space-between);
+    width: 50%;
+    height: 70vh;
+
+    .app_header-wrap {
+      @include flex(row, center, flex-start);
+      width: 100%;
+      flex-wrap: wrap;
+
+      img {
+        width: 35px;
+        height: 35px;
+      }
+
+      h2 {
+        font-size: $subheader-size;
+        font-weight: $font-normal;
+        text-transform: uppercase;
+        padding-left: 10px;
+        transition: $transition;
+
+        &:hover {
+          color: $color-gradient-one;
+        }
+      }
+
+      p {
+        text-align: start;
+        padding-top: 10px;
+      }
+    }
+  }
+}
+
+.p-text {
+  text-align: start;
+  font-size: $header-size;
+}

@@ -4,19 +4,19 @@ const Schema = mongoose.Schema;
 
 const postSchema = new Schema(
   {
-    title: {
+    name: {
       type: String,
       required: true,
     },
-    message: {
+    description: {
       type: String,
       reqired: true,
     },
-    author: {
+    cathegory: {
       type: String,
       required: true,
     },
-    selectedFile: {
+    location: {
       type: String,
       required: true,
     },

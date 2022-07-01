@@ -1,11 +1,12 @@
 import React from 'react';
-import { PostsView } from '../../container';
+import About from '../../container/About/About';
+
 import './Home.scss';
 
 const Home = () => {
   return (
     <>
-      <PostsView />
+      <About />
     </>
   );
 };
