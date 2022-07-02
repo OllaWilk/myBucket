@@ -3,7 +3,7 @@ import React from 'react';
 import './FAQ.scss';
 
 const FAQ = () => {
-  return <p>Page not found</p>;
+  return <div>FAQ</div>;
 };
 
 export default FAQ;

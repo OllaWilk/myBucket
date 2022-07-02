@@ -1,30 +1,33 @@
 import React from 'react';
 // import { useEffect, useState } from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { usePostsContext } from '../../hooks/usePostsContext';
 import { Form, Post } from '../../components';
 
 import './PostsView.scss';
 
 const PostsView = () => {
-  // const [posts, setPosts] = useState(null);
-  const { posts, dispatch } = usePostsContext();
+  const [posts, setPosts] = useState(null);
+  // const { posts, dispatch } = usePostsContext();
 
   useEffect(() => {
     const fetchPosts = async () => {
       const response = await fetch('http://localhost:3000/api/posts');
+      // const response = await fetch('/api/posts');
       const json = await response.json();
 
       if (response.ok) {
-        dispatch({
-          type: 'SET_POSTS',
-          payload: json,
-        });
+        // dispatch({
+        //   type: 'SET_POSTS',
+        //   payload: json,
+        // });
+
+        setPosts(json);
       }
     };
 
     fetchPosts();
-  }, [dispatch]);
+  }, []);
 
   return (
     <section className="container">

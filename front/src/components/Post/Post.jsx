@@ -1,7 +1,10 @@
 import React from 'react';
+
 import { usePostsContext } from '../../hooks/usePostsContext';
+import { FaTrashAlt, FaMapMarkerAlt, FaHashtag } from 'react-icons/fa';
 
 import './Post.scss';
+import IkonText from '../IkonText/IkonText';
 
 const Post = ({ post }) => {
   const { dispatch } = usePostsContext();
@@ -21,9 +24,20 @@ const Post = ({ post }) => {
 
   return (
     <div className="app__posts">
-      <h4>{post.title}</h4>
-      <p>{post.createdAt}</p>
-      <span onClick={handleClick}>DELETE</span>
+      <div className="app__post-content-wrap">
+        <h4>{post.name}</h4>
+        <p className="app__post-text">{post.description}</p>
+        <div className="app__tags-location-wrap">
+          <IkonText ikon={<FaHashtag />} text={post.cathegory} />
+          <IkonText ikon={<FaMapMarkerAlt />} text={post.location} />
+        </div>
+      </div>
+      <div className="app__post-functions">
+        <span onClick={handleClick}>
+          <FaTrashAlt />
+        </span>
+        <p className="app__post-date"> {post.createdAt}</p>
+      </div>
     </div>
   );
 };

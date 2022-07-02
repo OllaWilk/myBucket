@@ -4,7 +4,57 @@
 .app__posts {
   background-color: $color-light;
   margin: 2rem 2rem 2rem 0;
-  padding: 2rem;
-  height: 155px;
   box-shadow: $shadow;
+  position: relative;
+
+  .app__post-content-wrap {
+    // @include flex(column, flex-start, space-between);
+    text-align: start;
+    min-height: 200px;
+    padding: 1rem;
+    position: relative;
+
+    h4 {
+      font-size: $base-size;
+      font-weight: $font-bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: $color-gradient-one;
+      padding-bottom: 1rem;
+    }
+
+    .app__post-text {
+      padding: 0 0 1rem 0;
+    }
+
+    .app__tags-location-wrap {
+      position: absolute;
+      bottom: 0;
+      padding-bottom: 1rem;
+    }
+  }
+
+  .app__post-functions {
+    border-top: 1px solid $color-background;
+    @include flex(row-reverse, center, space-between);
+    color: $color-background;
+
+    span {
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+      transition: $transition;
+
+      &:hover {
+        color: $color-gradient-one;
+      }
+
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+    .app__post-date {
+      padding: 0.5rem 1rem;
+    }
+  }
 }

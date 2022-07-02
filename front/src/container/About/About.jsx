@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { BiSkipNext } from 'react-icons/bi';
 import { images } from '../../constants';
 
 import './About.scss';
