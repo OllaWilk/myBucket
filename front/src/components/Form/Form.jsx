@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
 import { usePostsContext } from '../../hooks/usePostsContext';
 
+import CartForm from '../CartForm/CartForm';
+
 import './Form.scss';
 
 const Form = () => {
   const { dispatch } = usePostsContext();
 
-  const [title, setTitle] = useState('');
-  const [author, setAuthor] = useState('');
-  const [selectedFile, setSelectedFile] = useState('');
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [cathegory, setCathegory] = useState('');
+  const [location, setLocation] = useState('');
   const [error, setError] = useState(null);
-  const [emptyFields, setEmptyFields] = useState([]);
+  // const [emptyFields, setEmptyFields] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const post = { title, author, selectedFile };
+    const post = { name, description, cathegory, location };
 
     const response = await fetch('http://localhost:3000/api/posts', {
       method: 'POST',
@@ -29,44 +32,38 @@ const Form = () => {
 
     if (!response.ok) {
       setError(json.error);
-      setEmptyFields(json.emptyFields);
+      // setEmptyFields(json.emptyFields);
     }
+
     if (response.ok) {
-      setTitle('');
-      setAuthor('');
-      setSelectedFile('');
+      setName('');
+      setDescription('');
+      setCathegory('');
+      setLocation('');
       setError(null);
-      setEmptyFields([]);
+      // setEmptyFields([]);
       dispatch({ type: 'CREATE_POST', payload: json });
+      console.log('new post added', json);
     }
   };
 
   return (
     <div className="app__form-wrap">
       <form onSubmit={handleSubmit}>
-        <h3>add</h3>
-        <label>Add title:</label>
-        <input
-          type="text"
-          onChange={(e) => setTitle(e.target.value)}
-          value={title}
-          className={emptyFields.includes('title') ? 'error' : ''}
+        <h3>Add New experiences or activities to try:</h3>
+        <CartForm lebel={'name'} setValue={setName} value={name} />
+        <CartForm
+          lebel={'description'}
+          setValue={setDescription}
+          value={description}
         />
-        <label>Add author:</label>
-        <input
-          type="text"
-          onChange={(e) => setAuthor(e.target.value)}
-          value={author}
-          className={emptyFields.includes('author') ? 'error' : ''}
+        <CartForm
+          lebel={'cathegory'}
+          setValue={setCathegory}
+          value={cathegory}
         />
-        <label>Add file:</label>
-        <input
-          type="text"
-          onChange={(e) => setSelectedFile(e.target.value)}
-          value={selectedFile}
-          className={emptyFields.includes('selectedFile') ? 'error' : ''}
-        />
-        <button>Add post</button>
+        <CartForm lebel={'location'} setValue={setLocation} value={location} />
+        <button>post</button>
         {error && <div>{error}</div>}
       </form>
     </div>

@@ -7,14 +7,14 @@
 
   label {
     text-transform: uppercase;
-    letter-spacing: 3px;
+    letter-spacing: 1px;
     font-weight: $font-bold;
     margin: 1rem 0 0 0;
     color: $color-main;
   }
 
   input {
-    padding: 1rem 0 1.5rem 0;
+    padding: 1rem 0 1rem 0;
     width: 100%;
     border: none;
     border-bottom: 1px solid $color-main;

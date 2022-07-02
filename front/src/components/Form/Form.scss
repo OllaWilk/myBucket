@@ -27,11 +27,7 @@ form {
     padding: 1rem 0;
     cursor: pointer;
     transition: $transition;
-
-    p {
-      font-size: $base-size;
-      text-transform: uppercase;
-    }
+    text-transform: uppercase;
 
     &:hover {
       background-color: $color-light;
