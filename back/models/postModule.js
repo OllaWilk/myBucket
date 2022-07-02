@@ -12,7 +12,7 @@ const postSchema = new Schema(
       type: String,
       reqired: true,
     },
-    cathegory: {
+    category: {
       type: String,
       required: true,
     },

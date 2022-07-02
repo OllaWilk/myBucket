@@ -30,13 +30,34 @@ const getSinglePost = async (req, res) => {
 
 // create a new post
 const createPost = async (req, res) => {
-  const { name, description, cathegory, location, likeCount } = req.body;
+  const { name, description, category, location, likeCount } = req.body;
+
+  let emptyFields = [];
+
+  if (!name) {
+    emptyFields.push('name');
+  }
+  if (!description) {
+    emptyFields.push('description');
+  }
+  if (!category) {
+    emptyFields.push('category');
+  }
+  if (!location) {
+    emptyFields.push('location');
+  }
+
+  if (emptyFields.length > 0) {
+    return res
+      .status(400)
+      .json({ error: 'Please fill in all the fields', emptyFields });
+  }
 
   try {
     const post = await Post.create({
       name,
       description,
-      cathegory,
+      category,
       location,
       likeCount,
     });

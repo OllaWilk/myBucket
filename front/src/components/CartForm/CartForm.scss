@@ -24,4 +24,8 @@
       font-size: $base-size;
     }
   }
+
+  .error {
+    border: 1px solid $color-gradient-one;
+  }
 }
