@@ -12,15 +12,19 @@
   left: 0;
   right: 0;
 
+  @include sm-max {
+    padding: 1rem 1rem;
+  }
+
   .app__footer-links {
     display: flex;
     align-items: baseline;
 
     svg {
-      height: 15px;
+      height: 16px;
     }
     a {
-      padding-left: 1rem;
+      padding-left: 5px;
     }
   }
 }

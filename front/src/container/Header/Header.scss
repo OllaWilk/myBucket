@@ -7,7 +7,12 @@
   @include gradient;
   color: $color-light;
   @include flex(row, center, space-between);
-  height: 64px;
-  padding: 2rem 6rem;
+  height: auto;
+  padding: 1rem 6rem;
   z-index: 999;
+
+  @include sm-max {
+    padding: 1rem 0rem;
+    @include flex(column, center, center);
+  }
 }
