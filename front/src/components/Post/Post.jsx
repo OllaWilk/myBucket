@@ -2,9 +2,9 @@ import React from 'react';
 
 import { usePostsContext } from '../../hooks/usePostsContext';
 import { FaTrashAlt, FaMapMarkerAlt, FaHashtag } from 'react-icons/fa';
+import IkonText from '../IkonText/IkonText';
 
 import './Post.scss';
-import IkonText from '../IkonText/IkonText';
 
 const Post = ({ post }) => {
   const { dispatch } = usePostsContext();

@@ -7,11 +7,36 @@ form {
   @include flex(column, flex-start, center);
   box-shadow: $shadow;
   background-color: $color-light;
+  position: relative;
+
+  @include lg-max {
+    margin: 1rem 0rem 1rem 0;
+  }
+
+  svg {
+    display: none;
+
+    @include lg-max {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 5px;
+      display: block;
+      width: $base-size;
+      height: $base-size;
+
+      z-index: 999;
+    }
+  }
 
   h3 {
     text-transform: uppercase;
     font-weight: $font-normal;
     padding: 0 0 2rem 0;
+
+    @include lg-max {
+      padding: 0;
+    }
   }
 
   button {
@@ -24,10 +49,14 @@ form {
     opacity: 0.8;
     color: $color-light;
     border: 1px solid $color-dark;
-    padding: 1rem 0;
+    padding: 0.5rem 0;
     cursor: pointer;
     transition: $transition;
     text-transform: uppercase;
+
+    @include lg-max {
+      margin-top: 2rem;
+    }
 
     &:hover {
       background-color: $color-light;

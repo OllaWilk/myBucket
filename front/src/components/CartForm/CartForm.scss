@@ -8,9 +8,9 @@
   label {
     text-transform: uppercase;
     letter-spacing: 1px;
-    font-weight: $font-bold;
-    margin: 1rem 0 0 0;
     color: $color-main;
+    width: 100%;
+    text-align: start;
   }
 
   input {

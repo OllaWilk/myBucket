@@ -5,9 +5,10 @@
   display: flex;
 
   @include sm-max {
-    width: 100vw;
-    justify-content: space-around;
-    margin-top: 1rem;
+    // width: 100vw;
+    // justify-content: space-around;
+    // margin-top: 1rem;
+    display: none;
   }
 
   li {
@@ -18,6 +19,63 @@
 
     @include sm-max {
       padding: 0rem 0rem;
+    }
+  }
+}
+
+.app__navbar-menu {
+  display: none;
+  @include sm-max {
+    width: 35px;
+    height: 35px;
+    position: relative;
+    @include flex(row, center, center);
+
+    svg {
+      width: 70%;
+      height: 70%;
+    }
+
+    div {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      z-index: 5;
+      padding: 1rem;
+      width: 100%;
+      height: 60vh;
+      @include flex(column, flex-end, flex-end);
+      background-color: $color-background;
+      box-shadow: $shadow;
+
+      svg {
+        width: 35px;
+        height: 35px;
+      }
+
+      ul {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        @include flex(column, center, flex-start);
+
+        li {
+          margin: 2rem;
+
+          a {
+            text-transform: uppercase;
+            font-weight: $font-bold;
+
+            transition: $transition;
+
+            &:hover {
+              color: $color-gradient-one;
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -3,12 +3,22 @@
 
 .app__posts {
   background-color: $color-light;
-  margin: 2rem 2rem 2rem 0;
+  margin: 2rem 2rem 1rem 0;
   box-shadow: $shadow;
   position: relative;
+  max-width: 100%;
+  overflow-wrap: break-word;
+
+  @include sm-max {
+    max-width: 100%;
+  }
+
+  @include md-max {
+    margin: 2rem 0;
+    width: 90vw;
+  }
 
   .app__post-content-wrap {
-    // @include flex(column, flex-start, space-between);
     text-align: start;
     min-height: 200px;
     padding: 1rem;
@@ -28,9 +38,9 @@
     }
 
     .app__tags-location-wrap {
-      position: absolute;
-      bottom: 0;
-      padding-bottom: 1rem;
+      // position: absolute;
+
+      padding: 1rem 0 0.5rem 0;
     }
   }
 
@@ -43,6 +53,7 @@
       cursor: pointer;
       padding: 0.5rem 1rem;
       transition: $transition;
+      word-wrap: break-word;
 
       &:hover {
         color: $color-gradient-one;

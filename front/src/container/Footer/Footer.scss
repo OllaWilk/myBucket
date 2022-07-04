@@ -6,7 +6,7 @@
   color: $color-light;
   opacity: 0.8;
   @include flex(row, center, space-between);
-  padding: 1rem 6rem;
+  padding: 0.5rem 6rem;
   position: fixed;
   bottom: 0;
   left: 0;

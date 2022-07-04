@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { usePostsContext } from '../../hooks/usePostsContext';
+import { HiX } from 'react-icons/hi';
 
 import CartForm from '../CartForm/CartForm';
 
 import './Form.scss';
 
-const Form = () => {
+const Form = ({ toggle }) => {
   const { dispatch } = usePostsContext();
 
   const [name, setName] = useState('');
@@ -48,37 +49,36 @@ const Form = () => {
   };
 
   return (
-    <div className="app__form-wrap">
-      <form onSubmit={handleSubmit}>
-        <h3>Add New experiences or activities to try:</h3>
-        <CartForm
-          lebel={'name'}
-          setValue={setName}
-          value={name}
-          style={emptyFields.includes('name') ? 'error' : ''}
-        />
-        <CartForm
-          lebel={'description'}
-          setValue={setDescription}
-          value={description}
-          style={emptyFields.includes('description') ? 'error' : ''}
-        />
-        <CartForm
-          lebel={'category'}
-          setValue={setCategory}
-          value={category}
-          style={emptyFields.includes('category') ? 'error' : ''}
-        />
-        <CartForm
-          lebel={'location'}
-          setValue={setLocation}
-          value={location}
-          style={emptyFields.includes('location') ? 'error' : ''}
-        />
-        <button>post</button>
-        {error && <div>{error}</div>}
-      </form>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <HiX onClick={toggle} />
+      <h3>Add New experiences or activities to try:</h3>
+      <CartForm
+        lebel={'name'}
+        setValue={setName}
+        value={name}
+        style={emptyFields.includes('name') ? 'error' : ''}
+      />
+      <CartForm
+        lebel={'description'}
+        setValue={setDescription}
+        value={description}
+        style={emptyFields.includes('description') ? 'error' : ''}
+      />
+      <CartForm
+        lebel={'category'}
+        setValue={setCategory}
+        value={category}
+        style={emptyFields.includes('category') ? 'error' : ''}
+      />
+      <CartForm
+        lebel={'location'}
+        setValue={setLocation}
+        value={location}
+        style={emptyFields.includes('location') ? 'error' : ''}
+      />
+      <button>send</button>
+      {error && <div>{error}</div>}
+    </form>
   );
 };
 

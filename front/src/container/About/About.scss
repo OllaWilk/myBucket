@@ -23,7 +23,7 @@
     }
 
     @include sm-max {
-      margin-top: 7rem;
+      margin-top: 5.5rem;
     }
 
     img {
@@ -83,6 +83,7 @@
         @include sm-max {
           padding-left: 0px;
           padding-top: 5px;
+          font-size: $base-size;
         }
 
         @include xl-max {
@@ -120,10 +121,10 @@
 .p-text {
   text-align: start;
   font-size: $header-size;
-  color: $color-gradient-one;
+  // color: $color-gradient-one;
 
   @include sm-max {
-    color: $color-gradient-one;
+    // color: $color-gradient-one;
   }
 
   @include xl-max {
