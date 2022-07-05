@@ -1,5 +1,7 @@
 const express = require('express');
 
+const path = require('path');
+
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
@@ -23,6 +25,15 @@ app.use((req, res, next) => {
 //read routes
 
 app.use('/api/posts', postsRoutes);
+
+//Server production assets
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join('front/build')));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'front', 'build', 'index.html'));
+  });
+}
 
 //connect to mongodb
 const PORT = process.env.PORT || 3000;

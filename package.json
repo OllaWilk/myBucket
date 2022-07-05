@@ -1,5 +1,22 @@
 {
-  "dependencies": {
-    "react-icons": "^4.4.0"
-  }
+  "name": "mybucketapp",
+  "version": "0.1.0",
+  "description": "MERN app my bucket ",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "build": "cd back && npm install & cd.. /front && npm install && npm run build",
+    "start": "node back/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OllaWilk/myBucket.git"
+  },
+  "author": "Alex Wilk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OllaWilk/myBucket/issues"
+  },
+  "homepage": "https://github.com/OllaWilk/myBucket#readme"
 }
