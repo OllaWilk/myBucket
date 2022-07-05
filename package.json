@@ -5,9 +5,11 @@
   "main": "index.js",
   "devDependencies": {},
   "scripts": {
-    "build": "cd back && npm install & cd ../front && npm install && npm run build",
     "start": "node back/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "nodemond back/index.js",
+    "client": "npm start --prefix front",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix front && npm run build --prefix front"
   },
   "repository": {
     "type": "git",
