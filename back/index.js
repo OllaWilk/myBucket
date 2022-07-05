@@ -31,12 +31,12 @@ app.use('/', (req, res) => {
 
 //Server production assets
 
-if (process.env.NODE_ENV === 'production') {
+// if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join('front/build')));
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'front', 'build', 'index.html'));
-  });
-}
+//   });
+// }
 
 //connect to mongodb
 const PORT = process.env.PORT || 3000;
