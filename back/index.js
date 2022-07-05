@@ -7,6 +7,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 
 const postsRoutes = require('./routes/posts.js');
+const usersRoutes = require('./routes/users.js');
 
 dotenv.config();
 
@@ -25,9 +26,7 @@ app.use((req, res, next) => {
 //read routes
 
 app.use('/api/posts', postsRoutes);
-app.use('/posts', (req, res) => {
-  res.redirect('/');
-});
+app.use('/api/user', usersRoutes);
 
 //Server production assets
 
@@ -44,8 +43,8 @@ const PORT = process.env.PORT || 3000;
 mongoose
   .connect(process.env.CONNECTDB_URL)
   .then(() =>
-    app.listen(PORT, () =>
-      console.log(`App runs on: http://localhost:${PORT}/`)
+    app.listen(3000, '0.0.0.0', () =>
+      console.log(`App runs on: http://localhost:3000/`)
     )
   )
-  .catch((err) => console.log(err.message));
+  .catch((err) => console.log('@#$ Error with connection', err.message));

@@ -45,9 +45,6 @@ const PostsView = () => {
         <div className="app__form-wrap ">
           <div className="overlay" onClick={toggleModal}></div>
           <div className="modal-content">
-            {toggle === true
-              ? console.log('większy', document.body.clientWidth >= 992)
-              : console.log('mniejszy')}
             <Form toggle={toggleModal} />
           </div>
         </div>
