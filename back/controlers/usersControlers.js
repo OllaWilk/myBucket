@@ -1,5 +1,9 @@
-const User = require('../models/userModule');
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+
+const User = require('../models/userModule');
+
+const saltRounds = 10;
 
 // get all users
 const getAllUsers = async (req, res) => {
@@ -31,11 +35,16 @@ const signupUser = async (req, res) => {
   // Create user.
 
   try {
+    const hash = bcrypt.hashSync(password, saltRounds);
+
     const user = await User.create({
       name,
       email,
-      password,
+      password: hash,
     });
+
+    // const hash = bcrypt.hashSync(password, saltRounds);
+
     res.status(201).json(user);
   } catch (error) {
     res.status(400).json({ error: error.message });
