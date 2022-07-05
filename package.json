@@ -3,10 +3,9 @@
   "version": "0.1.0",
   "description": "MERN app my bucket ",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
-    "start": "node back/index.js",
-    "server": "nodemond back/index.js",
+    "start": "node back/index",
+    "server": "nodemond back/index",
     "client": "npm start --prefix front",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix front && npm run build --prefix front"
@@ -20,5 +19,13 @@
   "bugs": {
     "url": "https://github.com/OllaWilk/myBucket/issues"
   },
-  "homepage": "https://github.com/OllaWilk/myBucket#readme"
+  "homepage": "https://github.com/OllaWilk/myBucket#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.4.3",
+    "nodemon": "^2.0.18"
+  }
 }
