@@ -25,9 +25,9 @@ app.use((req, res, next) => {
 //read routes
 
 app.use('/api/posts', postsRoutes);
-app.use('/', (req, res) => {
-  res.send('Hello');
-});
+// app.use('/', (req, res) => {
+//   res.send('Hello');
+// });
 
 //Server production assets
 
