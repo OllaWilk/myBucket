@@ -1,5 +1,6 @@
-const Post = require('../models/postModule');
 const mongoose = require('mongoose');
+const Post = require('../models/postModule');
+const User = require('../models/userModule');
 
 // get all posts
 const getPosts = async (req, res) => {
@@ -7,7 +8,7 @@ const getPosts = async (req, res) => {
     const posts = await Post.find({}).sort({ createdAt: -1 });
     res.status(200).json(posts);
   } catch {
-    res.status(404).json({ message: error.message });
+    res.status(404).json({ message: 'error.message' });
   }
 };
 
@@ -30,12 +31,13 @@ const getSinglePost = async (req, res) => {
 
 // create a new post
 const createPost = async (req, res) => {
-  const { name, description, category, location, likeCount } = req.body;
+  const { title, description, category, location, likeCount, image, user } =
+    req.body;
 
   let emptyFields = [];
 
-  if (!name) {
-    emptyFields.push('name');
+  if (!title) {
+    emptyFields.push('title');
   }
   if (!description) {
     emptyFields.push('description');
@@ -54,16 +56,32 @@ const createPost = async (req, res) => {
   }
 
   try {
+    const existingUser = await User.findById(user);
+
+    if (!existingUser) {
+      return res.status(400).json({ message: 'no such user' });
+    }
+
     const post = await Post.create({
-      name,
+      title,
       description,
       category,
       location,
       likeCount,
+      user,
+      image,
     });
-    res.status(200).json(post);
+
+    const session = await mongoose.startSession();
+    session.startTransaction();
+    await post.save({ session });
+    existingUser.posts.push(post);
+    await existingUser.save({ session });
+    await session.commitTransaction();
+
+    res.status(200).json({ post });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 };
 

@@ -25,7 +25,7 @@ const Post = ({ post }) => {
   return (
     <div className="app__posts">
       <div className="app__post-content-wrap">
-        <h4>{post.name}</h4>
+        <h4>{post.title}</h4>
         <p className="app__post-text">{post.description}</p>
         <div className="app__tags-location-wrap">
           <IkonText ikon={<FaHashtag />} text={post.category} />

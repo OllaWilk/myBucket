@@ -9,7 +9,7 @@ import './Form.scss';
 const Form = ({ toggle }) => {
   const { dispatch } = usePostsContext();
 
-  const [name, setName] = useState('');
+  const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
   const [location, setLocation] = useState('');
@@ -19,7 +19,7 @@ const Form = ({ toggle }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const post = { name, description, category, location };
+    const post = { title, description, category, location };
 
     const response = await fetch('http://localhost:3000/api/posts', {
       method: 'POST',
@@ -37,7 +37,7 @@ const Form = ({ toggle }) => {
     }
 
     if (response.ok) {
-      setName('');
+      setTitle('');
       setDescription('');
       setCategory('');
       setLocation('');
@@ -53,10 +53,10 @@ const Form = ({ toggle }) => {
       <HiX onClick={toggle} />
       <h3>Add New experiences or activities to try:</h3>
       <CartForm
-        lebel={'name'}
-        setValue={setName}
-        value={name}
-        style={emptyFields.includes('name') ? 'error' : ''}
+        lebel={'title'}
+        setValue={setTitle}
+        value={title}
+        style={emptyFields.includes('title') ? 'error' : ''}
       />
       <CartForm
         lebel={'description'}

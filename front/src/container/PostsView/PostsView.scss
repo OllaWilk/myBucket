@@ -4,11 +4,9 @@
 .app__posts-wrap {
   display: flex;
   flex-direction: column;
-  // left: 0;
   padding-top: 64px;
-  // width: 66.66%;
   max-width: 66.66%;
-
+  padding-bottom: 100px;
   @include sm-max {
     @include flex(column, center, center);
   }

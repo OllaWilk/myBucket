@@ -26,7 +26,7 @@ app.use((req, res, next) => {
 //read routes
 
 app.use('/api/posts', postsRoutes);
-app.use('/api/user', usersRoutes);
+app.use('/api/users', usersRoutes);
 
 //Server production assets
 
@@ -43,8 +43,8 @@ const PORT = process.env.PORT || 3000;
 mongoose
   .connect(process.env.CONNECTDB_URL)
   .then(() =>
-    app.listen(3000, '0.0.0.0', () =>
-      console.log(`App runs on: http://localhost:3000/`)
+    app.listen(PORT, () =>
+      console.log(`App runs on: http://localhost:${PORT}/`)
     )
   )
-  .catch((err) => console.log('@#$ Error with connection', err.message));
+  .catch((err) => console.log('Error with connection', err.message));

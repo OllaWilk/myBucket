@@ -1,1 +1,1 @@
-web: node back/index.js
+worker: YOUR_COMMAND

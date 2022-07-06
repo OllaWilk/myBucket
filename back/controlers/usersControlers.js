@@ -41,6 +41,7 @@ const signupUser = async (req, res) => {
       name,
       email,
       password: hash,
+      blogs: [],
     });
 
     // const hash = bcrypt.hashSync(password, saltRounds);
@@ -51,7 +52,23 @@ const signupUser = async (req, res) => {
   }
 };
 
+const loginUser = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+  } catch {
+    res.status(409).json({ message: error.message });
+  }
+
+  if (!user) {
+    return res
+      .status(404)
+      .json({ message: "Couldn't find user by this email" });
+  }
+};
 module.exports = {
   getAllUsers,
   signupUser,
+  loginUser,
 };
