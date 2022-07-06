@@ -93,12 +93,19 @@ const deletePost = async (req, res) => {
     return res.status(400).json({ error: 'No such post' });
   }
 
-  const post = await Post.findOneAndDelete({ _id: id });
+  try {
+    const post = await Post.findOneAndDelete({ _id: id }).populate('user');
+    await post.user.posts.pull(post);
+    await post.user.save();
 
-  if (!post) {
-    return res.status(400).json({ error: 'No such post' });
+    if (!post) {
+      return res.status(400).json({ error: 'No such post' });
+    }
+
+    res.status(200).json(post);
+  } catch (error) {
+    res.status(500).json({ message: "can't delete post" });
   }
-  res.status(200).json(post);
 };
 
 // update a post
@@ -123,10 +130,24 @@ const updatePost = async (req, res) => {
   res.status(200).json(post);
 };
 
+//get posts by user Id
+
+const getUserId = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const userBlogs = await User.findById(id).populate('posts');
+    res.status(200).json({ posts: userBlogs });
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+
 module.exports = {
   getPosts,
   getSinglePost,
   createPost,
   deletePost,
   updatePost,
+  getUserId,
 };

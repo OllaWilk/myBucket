@@ -5,6 +5,7 @@ const {
   createPost,
   deletePost,
   updatePost,
+  getUserId,
 } = require('../controlers/postsControlers.js');
 
 const router = express.Router();
@@ -14,5 +15,6 @@ router.get('/:id', getSinglePost);
 router.post('/', createPost);
 router.delete('/:id', deletePost);
 router.patch('/:id', updatePost);
+router.get('/user/:id', getUserId);
 
 module.exports = router;
