@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { BiUser } from 'react-icons/bi';
+import { authActions } from '../../store';
 
 import './Login.scss';
 
 const Login = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [input, setInput] = useState({
     name: '',
     email: '',
@@ -20,13 +25,32 @@ const Login = () => {
     }));
   };
 
-  const response = async () => {
-    axios.post();
+  const requestToServer = async (type = 'login') => {
+    const response = await axios
+      .post(`http://localhost:3000/api/users/${type}`, {
+        name: input.name,
+        email: input.email,
+        password: input.password,
+      })
+      .catch((error) => console.log(error));
+
+    const data = await response.data;
+    return data;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(input);
+
+    signUp
+      ? requestToServer('signup')
+          .then(() => dispatch(authActions.login()))
+          .then(() => navigate('/'))
+          .then((data) => console.log(data))
+      : requestToServer()
+          .then(() => dispatch(authActions.login()))
+          .then(() => navigate('/'))
+          .then((data) => console.log(data));
   };
 
   return (

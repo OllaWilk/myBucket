@@ -15,8 +15,8 @@ dotenv.config();
 const app = express();
 
 //config
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
 
 app.use((req, res, next) => {
   console.log(req.path, req.method);
