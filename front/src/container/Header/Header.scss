@@ -14,4 +14,8 @@
   @include sm-max {
     padding: 1rem 1rem;
   }
+
+  .app__header-nav {
+    @include flex(row, center, center);
+  }
 }

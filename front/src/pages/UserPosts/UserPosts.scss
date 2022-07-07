@@ -1,0 +1,8 @@
+@import '../../styles/settings.scss';
+@import '../../styles/mixins.scss';
+
+.myposts {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

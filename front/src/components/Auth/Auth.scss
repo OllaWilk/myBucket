@@ -1,0 +1,20 @@
+@import '../../styles/settings.scss';
+@import '../../styles/mixins.scss';
+
+.app__auth {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+
+  svg {
+    height: 20px;
+    width: 20px;
+    margin-left: 2rem;
+    vertical-align: bottom;
+    margin-bottom: 5px;
+
+    &:hover {
+      color: $color-gradient-two;
+    }
+  }
+}

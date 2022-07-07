@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Logo } from '../../components';
+import { Navbar, Logo, Login } from '../../components';
 import { Link } from 'react-router-dom';
 
 import './Header.scss';
@@ -10,7 +10,10 @@ const Header = () => {
       <Link to="/">
         <Logo props={'my bucket'} />
       </Link>
-      <Navbar />
+      <div className="app__header-nav">
+        <Navbar />
+        <Login />
+      </div>
     </header>
   );
 };

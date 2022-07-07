@@ -1,0 +1,55 @@
+@import '../../styles/settings.scss';
+@import '../../styles/mixins.scss';
+
+.app__login-form {
+  height: 100vh;
+
+  @include flex(column, center, center);
+
+  form {
+    background-color: transparent;
+    box-shadow: none;
+    margin: 0;
+
+    .app__cart-form {
+      input {
+        box-shadow: $shadow;
+        width: 400px;
+        padding-left: 10px;
+        margin-bottom: 1rem;
+      }
+
+      label {
+        color: $color-dark;
+      }
+    }
+
+    .app__login-switch {
+      cursor: pointer;
+      margin-top: 10px;
+
+      span {
+        text-decoration: underline;
+        &:hover {
+          color: $color-gradient-one;
+        }
+      }
+    }
+
+    button {
+      &:hover {
+        background-color: $color-gradient-one;
+        border: 1px solid $color-gradient-one;
+        color: $color-light;
+      }
+    }
+  }
+  svg {
+    width: 80px;
+    height: 80px;
+    @include gradient;
+    color: black;
+    color: $color-light;
+    border-radius: 50%;
+  }
+}
