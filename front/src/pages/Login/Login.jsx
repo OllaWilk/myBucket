@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { BiUser } from 'react-icons/bi';
 
 import './Login.scss';
@@ -17,6 +18,10 @@ const Login = () => {
       ...prevState,
       [e.target.name]: e.target.value,
     }));
+  };
+
+  const response = async () => {
+    axios.post();
   };
 
   const handleSubmit = (e) => {

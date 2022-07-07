@@ -57,14 +57,16 @@ const loginUser = async (req, res) => {
 
   try {
     const user = await User.findOne({ email });
+
+    if (!user) {
+      return res
+        .status(404)
+        .json({ message: "Couldn't find user by this email" });
+    }
+
+    res.status(200).json({ message: 'Loged in', user: user });
   } catch {
     res.status(409).json({ message: error.message });
-  }
-
-  if (!user) {
-    return res
-      .status(404)
-      .json({ message: "Couldn't find user by this email" });
   }
 };
 module.exports = {
