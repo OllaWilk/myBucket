@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Posts } from '../../container';
 import { Form, IkonText } from '../../components';
@@ -6,9 +6,7 @@ import { Form, IkonText } from '../../components';
 import { BiAddToQueue } from 'react-icons/bi';
 import './Board.scss';
 
-const Board = () => {
-  const [currentId, setCurrentId] = useState(null);
-
+const Board = ({ currentId, setCurrentId }) => {
   return (
     <div className="container">
       <Posts setCurrentId={setCurrentId} />
