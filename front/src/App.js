@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { getPosts } from './actions/posts';
 
-import { Home, Board, FAQ, NotFound, Login, PostDetail } from './pages';
+import { Home, Board, FAQ, NotFound, Login } from './pages';
 import { Footer, Header } from './container';
 import { Form } from './components';
 
@@ -26,7 +26,7 @@ const App = () => {
 
           <Route path="/posts" element={<Board />} />
           <Route path="/add" element={<Form />} />
-          <Route path="/myposts/:id" element={<PostDetail />} />
+          <Route path="/myposts/:id" />
 
           <Route path="/faq" element={<FAQ />} />
           <Route path="/login" element={<Login />} />

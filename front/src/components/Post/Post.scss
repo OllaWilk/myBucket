@@ -18,6 +18,17 @@
     width: 90vw;
   }
 
+  .app__post-img-wrap {
+    height: 350px;
+    width: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
   .app__post-content-wrap {
     text-align: start;
     min-height: 200px;
