@@ -77,9 +77,7 @@ const deletePost = async (req, res) => {
   }
 
   try {
-    const post = await Post.findOneAndDelete({ _id: id }).populate('user');
-    await post.user.posts.pull(post);
-    await post.user.save();
+    const post = await Post.findOneAndDelete({ _id: id });
 
     if (!post) {
       return res.status(400).json({ error: 'No such post' });

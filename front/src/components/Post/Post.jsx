@@ -1,13 +1,17 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { FaTrashAlt, FaMapMarkerAlt, FaHashtag, FaEdit } from 'react-icons/fa';
 import moment from 'moment';
 
+import { deletePost } from '../../actions/posts';
 import IkonText from '../IkonText/IkonText';
 import { images } from '../../constants';
 
 import './Post.scss';
 
 const Post = ({ post, setCurrentId }) => {
+  const dispatch = useDispatch();
+
   return (
     <div className="app__posts">
       <div className="app__post-img-wrap">
@@ -26,7 +30,7 @@ const Post = ({ post, setCurrentId }) => {
       <div className="app__post-functions">
         <div>
           <span>
-            <FaTrashAlt />
+            <FaTrashAlt onClick={() => dispatch(deletePost(post._id))} />
           </span>
           <span>
             <FaEdit onClick={() => setCurrentId(post._id)} />
