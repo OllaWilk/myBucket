@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { HiMenuAlt4, HiX } from 'react-icons/hi';
 
@@ -7,7 +6,6 @@ import './Navbar.scss';
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
-  const isLoggedIn = useSelector((state) => state.isLoggedIn);
 
   return (
     <nav>
@@ -15,12 +13,11 @@ const Navbar = () => {
         <li>
           <Link to={'/'}>Home</Link>
         </li>
-        {isLoggedIn &&
-          ['browse', 'posts'].map((item) => (
-            <li key={`link-${item}`}>
-              <Link to={`/${item}`}>{item}</Link>
-            </li>
-          ))}
+        {['posts'].map((item) => (
+          <li key={`link-${item}`}>
+            <Link to={`/${item}`}>{item}</Link>
+          </li>
+        ))}
         <li>
           <Link to={'/faq'}>faq</Link>
         </li>
@@ -37,14 +34,13 @@ const Navbar = () => {
                   Home
                 </Link>
               </li>
-              {isLoggedIn &&
-                ['browse', 'posts'].map((item) => (
-                  <li key={item}>
-                    <Link to={`/${item}`} onClick={() => setToggle(false)}>
-                      {item}
-                    </Link>
-                  </li>
-                ))}
+              {['posts'].map((item) => (
+                <li key={item}>
+                  <Link to={`/${item}`} onClick={() => setToggle(false)}>
+                    {item}
+                  </Link>
+                </li>
+              ))}
               <li>
                 <Link to={'/faq'}>faq</Link>
               </li>

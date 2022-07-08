@@ -1,0 +1,46 @@
+@import '../../styles/settings.scss';
+@import '../../styles/mixins.scss';
+
+.form-wrap {
+  position: fixed;
+  top: 0;
+  right: 0%;
+  width: 30%;
+
+  @include lg-max {
+    display: none;
+  }
+  @include sm-max {
+    display: none;
+  }
+}
+
+.toggle-form-btn {
+  display: none;
+  position: fixed;
+  bottom: 100px;
+
+  right: 10%;
+  z-index: 1;
+  @include gradient;
+  color: $color-light;
+  padding: 1rem;
+  text-transform: uppercase;
+
+  @include lg-max {
+    display: block;
+    bottom: 100px;
+    right: 10%;
+
+    svg {
+      width: 30px;
+      height: 30px;
+    }
+
+    @include sm-max {
+      bottom: 70px;
+      right: 3%;
+      padding: 0.5rem;
+    }
+  }
+}

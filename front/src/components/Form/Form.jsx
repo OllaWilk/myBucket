@@ -1,83 +1,85 @@
 import React, { useState } from 'react';
-import { usePostsContext } from '../../hooks/usePostsContext';
+import { useDispatch } from 'react-redux';
 import { HiX } from 'react-icons/hi';
 
-import CartForm from '../CartForm/CartForm';
+import { createPost } from '../../actions/posts';
 
 import './Form.scss';
 
 const Form = ({ toggle }) => {
-  const { dispatch } = usePostsContext();
+  const [input, setInput] = useState({
+    title: '',
+    description: '',
+    category: '',
+    location: '',
+    image: '',
+  });
 
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [category, setCategory] = useState('');
-  const [location, setLocation] = useState('');
-  const [error, setError] = useState(null);
-  const [emptyFields, setEmptyFields] = useState([]);
+  const dispatch = useDispatch();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    const post = { title, description, category, location };
+    dispatch(createPost(input));
+  };
 
-    const response = await fetch('http://localhost:3000/api/posts', {
-      method: 'POST',
-      body: JSON.stringify(post),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    const json = await response.json();
-
-    if (!response.ok) {
-      setError(json.error);
-      setEmptyFields(json.emptyFields);
-    }
-
-    if (response.ok) {
-      setTitle('');
-      setDescription('');
-      setCategory('');
-      setLocation('');
-      setError(null);
-      setEmptyFields([]);
-      dispatch({ type: 'CREATE_POST', payload: json });
-      console.log('new post added', json);
-    }
+  const handleChange = (e) => {
+    setInput((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <HiX onClick={toggle} />
       <h3>Add New experiences or activities to try:</h3>
-      <CartForm
-        lebel={'title'}
-        setValue={setTitle}
-        value={title}
-        style={emptyFields.includes('title') ? 'error' : ''}
-      />
-      <CartForm
-        lebel={'description'}
-        setValue={setDescription}
-        value={description}
-        style={emptyFields.includes('description') ? 'error' : ''}
-      />
-      <CartForm
-        lebel={'category'}
-        setValue={setCategory}
-        value={category}
-        style={emptyFields.includes('category') ? 'error' : ''}
-      />
-      <CartForm
-        lebel={'location'}
-        setValue={setLocation}
-        value={location}
-        style={emptyFields.includes('location') ? 'error' : ''}
-      />
-      <button>send</button>
-      {error && <div>{error}</div>}
+      <div className="app__cart-form">
+        <input
+          name="title"
+          type="text"
+          value={input.title}
+          onChange={handleChange}
+        />
+        <label>title</label>
+      </div>
+      <div className="app__cart-form">
+        <input
+          name="description"
+          type="text"
+          value={input.description}
+          onChange={handleChange}
+        />
+        <label>description</label>
+      </div>
+      <div className="app__cart-form">
+        <input
+          name="category"
+          type="text"
+          value={input.category}
+          onChange={handleChange}
+        />
+        <label>category</label>
+      </div>
+      <div className="app__cart-form">
+        <input
+          name="location"
+          type="text"
+          value={input.location}
+          onChange={handleChange}
+        />
+        <label>location</label>
+      </div>
+      <div className="app__cart-form">
+        <input
+          name="image"
+          type="text"
+          value={input.image}
+          onChange={handleChange}
+        />
+        <label>image</label>
+      </div>
+
+      <button type="submit">send</button>
     </form>
   );
 };

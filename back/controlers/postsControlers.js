@@ -31,8 +31,7 @@ const getSinglePost = async (req, res) => {
 
 // create a new post
 const createPost = async (req, res) => {
-  const { title, description, category, location, likeCount, image, user } =
-    req.body;
+  const { title, description, category, location, image } = req.body;
 
   let emptyFields = [];
 
@@ -56,32 +55,16 @@ const createPost = async (req, res) => {
   }
 
   try {
-    const existingUser = await User.findById(user);
-
-    if (!existingUser) {
-      return res.status(400).json({ message: 'no such user' });
-    }
-
     const post = await Post.create({
       title,
       description,
       category,
       location,
-      likeCount,
-      user,
       image,
     });
-
-    const session = await mongoose.startSession();
-    session.startTransaction();
-    await post.save({ session });
-    existingUser.posts.push(post);
-    await existingUser.save({ session });
-    await session.commitTransaction();
-
-    res.status(200).json({ post });
+    res.status(200).json(post);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(400).json({ error: error.message });
   }
 };
 
@@ -133,11 +116,11 @@ const updatePost = async (req, res) => {
 //get posts by user Id
 
 const getUserId = async (req, res) => {
-  const { id } = req.params;
+  const userId = req.params.id;
 
   try {
-    const userBlogs = await User.findById(id).populate('posts');
-    res.status(200).json({ posts: userBlogs });
+    const userPosts = await User.findById(userId).populate('posts');
+    res.status(200).json({ user: userPosts });
   } catch (error) {
     res.status(404).json({ error: error.message });
   }

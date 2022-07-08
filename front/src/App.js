@@ -1,22 +1,21 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import { getPosts } from './actions/posts';
+
+import { Home, Board, FAQ, NotFound, Login, PostDetail } from './pages';
 import { Footer, Header } from './container';
-import {
-  Home,
-  Posts,
-  FAQ,
-  NotFound,
-  Login,
-  UserPosts,
-  PostDetail,
-} from './pages';
+import { Form } from './components';
 
 import './styles/global.scss';
 
 const App = () => {
-  const isLoggedIn = useSelector((state) => state.isLoggedIn);
-  console.log(isLoggedIn);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [dispatch]);
 
   return (
     <>
@@ -24,13 +23,11 @@ const App = () => {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          {isLoggedIn && (
-            <>
-              <Route path="/browse" element={<Posts />} />
-              <Route path="/posts" element={<UserPosts />} />
-              <Route path="/myposts/:id" element={<PostDetail />} />
-            </>
-          )}
+
+          <Route path="/posts" element={<Board />} />
+          <Route path="/add" element={<Form />} />
+          <Route path="/myposts/:id" element={<PostDetail />} />
+
           <Route path="/faq" element={<FAQ />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFound />} />

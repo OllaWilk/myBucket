@@ -1,26 +1,26 @@
 import React from 'react';
 
-import { usePostsContext } from '../../hooks/usePostsContext';
+// import { usePostsContext } from '../../hooks/usePostsContext';
 import { FaTrashAlt, FaMapMarkerAlt, FaHashtag } from 'react-icons/fa';
 import IkonText from '../IkonText/IkonText';
 
 import './Post.scss';
 
 const Post = ({ post }) => {
-  const { dispatch } = usePostsContext();
+  // const { dispatch } = usePostsContext();
 
-  const handleClick = async () => {
-    const postID = post._id;
-    const response = await fetch('http://localhost:3000/api/posts/' + postID, {
-      method: 'DELETE',
-    });
+  // const handleClick = async () => {
+  //   const postID = post._id;
+  //   const response = await fetch('http://localhost:3000/api/posts/' + postID, {
+  //     method: 'DELETE',
+  //   });
 
-    const json = await response.json();
+  //   const json = await response.json();
 
-    if (response.ok) {
-      dispatch({ type: 'DELETE_POST', payload: json });
-    }
-  };
+  //   if (response.ok) {
+  //     dispatch({ type: 'DELETE_POST', payload: json });
+  //   }
+  // };
 
   return (
     <div className="app__posts">
@@ -33,7 +33,8 @@ const Post = ({ post }) => {
         </div>
       </div>
       <div className="app__post-functions">
-        <span onClick={handleClick}>
+        <span>
+          {/* <span onClick={handleClick}> */}
           <FaTrashAlt />
         </span>
         <p className="app__post-date"> {post.createdAt}</p>

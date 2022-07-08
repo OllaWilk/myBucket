@@ -24,11 +24,11 @@ const postSchema = new Schema(
       type: Number,
       default: 0,
     },
-    user: {
-      type: mongoose.Types.ObjectId,
-      ref: 'User',
-      required: true,
-    },
+    // user: {
+    //   type: mongoose.Types.ObjectId,
+    //   ref: 'User',
+    //   required: true,
+    // },
     image: {
       type: String,
       required: false,
