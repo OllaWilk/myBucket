@@ -29,8 +29,9 @@
 
   @include lg-max {
     display: block;
-    bottom: 100px;
+    bottom: 60px;
     right: 10%;
+    padding: 0.5rem;
 
     svg {
       width: 30px;
@@ -38,9 +39,7 @@
     }
 
     @include sm-max {
-      bottom: 70px;
       right: 3%;
-      padding: 0.5rem;
     }
   }
 }

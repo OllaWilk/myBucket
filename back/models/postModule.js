@@ -12,10 +12,6 @@ const postSchema = new Schema(
       type: String,
       reqired: true,
     },
-    category: {
-      type: String,
-      required: true,
-    },
     location: {
       type: String,
       required: true,

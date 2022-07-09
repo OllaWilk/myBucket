@@ -43,6 +43,9 @@ form {
     .error {
       border: 1px solid $color-gradient-one;
     }
+    .ok {
+      border: 1px solid green;
+    }
   }
 
   h3 {
@@ -79,5 +82,32 @@ form {
       color: $color-dark;
       border: 1px solid $color-dark;
     }
+  }
+
+  .app__clear-btn {
+    cursor: pointer;
+    margin-top: 10px;
+    background-color: $color-background;
+    border: 1px solid $color-background;
+    padding: 2px;
+    width: 100%;
+    transition: $transition;
+
+    &:hover {
+      background-color: $color-light;
+    }
+  }
+
+  .app__close-btn {
+    display: none;
+    cursor: pointer;
+
+    @include lg-max {
+      display: block;
+    }
+  }
+
+  .app__form-error-message {
+    padding-top: 10px;
   }
 }

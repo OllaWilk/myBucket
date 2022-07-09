@@ -4,6 +4,7 @@ import logo40x40White from '../assets/square40x40White.png';
 import homepage from '../assets/homepage.png';
 import homepageblack from '../assets/homepage-black.png';
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   logo,
   homepage,

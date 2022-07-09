@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 // import FileBase from 'react-file-base64';
 
 import { createPost, updatePost } from '../../actions/posts';
@@ -10,10 +11,13 @@ const Form = ({ currentId, setCurrentId }) => {
   const [input, setInput] = useState({
     title: '',
     description: '',
-    category: '',
     location: '',
     image: '',
   });
+
+  const [emptyFields, setEmptyFields] = useState([]);
+
+  const [error, setError] = useState(null);
 
   const post = useSelector((state) =>
     currentId ? state.posts.find((post) => post._id === currentId) : null
@@ -25,23 +29,55 @@ const Form = ({ currentId, setCurrentId }) => {
     if (post) setInput(post);
   }, [post]);
 
+  const clearFields = () => {
+    setCurrentId(null);
+    setInput({
+      title: '',
+      description: '',
+      location: '',
+      image: '',
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (currentId) {
       dispatch(updatePost(currentId, input));
     } else {
+      //error message
+      let emptyFields = [];
+
+      emptyFields.map((emptyField) => console.log(emptyField));
+
+      if (!input.title) {
+        emptyFields.push(' title');
+      }
+      if (!input.description) {
+        emptyFields.push(' description ');
+      }
+      if (!input.location) {
+        emptyFields.push(' location ');
+      }
+      if (emptyFields.length > 0) {
+        if (
+          emptyFields.includes(' title') ||
+          emptyFields.includes(' description ') ||
+          emptyFields.includes(' location ')
+        ) {
+          return [
+            setEmptyFields(emptyFields),
+            setError(`Please fill in the fields: ${emptyFields} `),
+          ];
+        }
+      }
+
       dispatch(createPost(input));
     }
 
-    setCurrentId(null);
-    setInput({
-      title: '',
-      description: '',
-      category: '',
-      location: '',
-      image: '',
-    });
+    setError(null);
+    setEmptyFields([]);
+    clearFields();
   };
 
   const handleChange = (e) => {
@@ -62,6 +98,7 @@ const Form = ({ currentId, setCurrentId }) => {
           type="text"
           value={input.title}
           onChange={handleChange}
+          className={emptyFields.includes(' title') ? 'error' : ''}
         />
         <label>title</label>
       </div>
@@ -71,24 +108,18 @@ const Form = ({ currentId, setCurrentId }) => {
           type="text"
           value={input.description}
           onChange={handleChange}
+          className={emptyFields.includes(' description ') ? 'error' : ''}
         />
-        <label>description</label>
+        <label>description </label>
       </div>
-      <div className="app__cart-form">
-        <input
-          name="category"
-          type="text"
-          value={input.category}
-          onChange={handleChange}
-        />
-        <label>category</label>
-      </div>
+
       <div className="app__cart-form">
         <input
           name="location"
           type="text"
           value={input.location}
           onChange={handleChange}
+          className={emptyFields.includes(' location ') ? 'error' : ''}
         />
         <label>location</label>
       </div>
@@ -108,6 +139,13 @@ const Form = ({ currentId, setCurrentId }) => {
       </div>
 
       <button type="submit">send</button>
+      <div className="app__clear-btn" onClick={clearFields}>
+        clear
+      </div>
+      <Link className="app__close-btn" to={'/posts'}>
+        close form
+      </Link>
+      {error && <div className="app__form-error-message">{error}</div>}
     </form>
   );
 };

@@ -49,8 +49,8 @@
     }
 
     .app__tags-location-wrap {
-      // position: absolute;
-
+      position: absolute;
+      bottom: 0;
       padding: 1rem 0 0.5rem 0;
     }
   }
@@ -59,9 +59,9 @@
     border-top: 1px solid $color-background;
     @include flex(row-reverse, center, space-between);
     color: $color-background;
+    cursor: pointer;
 
     span {
-      cursor: pointer;
       padding: 0.5rem 1rem;
       transition: $transition;
       word-wrap: break-word;

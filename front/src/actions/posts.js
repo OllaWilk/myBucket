@@ -1,10 +1,16 @@
 import * as api from '../api';
+import {
+  SET_POSTS,
+  CREATE_POST,
+  UPDATE_POST,
+  DELETE_POST,
+} from '../constants/actionTypes';
 
 export const getPosts = () => async (dispatch) => {
   try {
     const { data } = await api.fetchPosts();
 
-    dispatch({ type: 'SET_POSTS', payload: data });
+    dispatch({ type: SET_POSTS, payload: data });
   } catch (err) {
     console.log(err);
   }
@@ -12,11 +18,13 @@ export const getPosts = () => async (dispatch) => {
 
 export const createPost = (post) => async (dispatch) => {
   try {
-    const { data } = await api.createPost(post);
+    const response = await api.createPost(post);
 
-    dispatch({ type: 'CREATE_POST', payload: data });
+    const data = await response.data;
+
+    dispatch({ type: CREATE_POST, payload: data });
   } catch (err) {
-    console.log(err);
+    console.log('Fill the fields', err);
   }
 };
 
@@ -24,9 +32,9 @@ export const updatePost = (id, post) => async (dispatch) => {
   try {
     const { data } = await api.updatePost(id, post);
 
-    dispatch({ type: 'UPDATE_POST', payload: data });
+    dispatch({ type: UPDATE_POST, payload: data });
   } catch (err) {
-    console.log(err);
+    console.log("Can't update post", err);
   }
 };
 
@@ -34,8 +42,8 @@ export const deletePost = (id) => async (dispatch) => {
   try {
     await api.deletePost(id);
 
-    dispatch({ type: 'DELETE_POST', payload: id });
+    dispatch({ type: DELETE_POST, payload: id });
   } catch (err) {
-    console.log(err);
+    console.log("Can't delete post", err);
   }
 };

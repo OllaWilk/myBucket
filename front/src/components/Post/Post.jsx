@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { FaTrashAlt, FaMapMarkerAlt, FaHashtag, FaEdit } from 'react-icons/fa';
+import { FaTrashAlt, FaMapMarkerAlt, FaEdit } from 'react-icons/fa';
 import moment from 'moment';
 
 import { deletePost } from '../../actions/posts';
@@ -23,17 +23,16 @@ const Post = ({ post, setCurrentId }) => {
         <h4>{post.title}</h4>
         <p className="app__post-text">{post.description}</p>
         <div className="app__tags-location-wrap">
-          <IkonText ikon={<FaHashtag />} text={post.category} />
           <IkonText ikon={<FaMapMarkerAlt />} text={post.location} />
         </div>
       </div>
       <div className="app__post-functions">
         <div>
-          <span>
-            <FaTrashAlt onClick={() => dispatch(deletePost(post._id))} />
+          <span onClick={() => dispatch(deletePost(post._id))}>
+            <FaTrashAlt />
           </span>
-          <span>
-            <FaEdit onClick={() => setCurrentId(post._id)} />
+          <span onClick={() => setCurrentId(post._id)}>
+            <FaEdit />
           </span>
         </div>
 
