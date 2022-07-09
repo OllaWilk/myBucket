@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-// import FileBase from 'react-file-base64';
+import FileBase64 from 'react-file-base64';
 
 import { createPost, updatePost } from '../../actions/posts';
 
@@ -16,7 +16,6 @@ const Form = ({ currentId, setCurrentId }) => {
   });
 
   const [emptyFields, setEmptyFields] = useState([]);
-
   const [error, setError] = useState(null);
 
   const post = useSelector((state) =>
@@ -42,36 +41,35 @@ const Form = ({ currentId, setCurrentId }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    let emptyFields = [];
+
+    emptyFields.map((emptyField) => console.log(emptyField));
+
+    if (!input.title) {
+      emptyFields.push(' title');
+    }
+    if (!input.description) {
+      emptyFields.push(' description ');
+    }
+    if (!input.location) {
+      emptyFields.push(' location ');
+    }
+    if (emptyFields.length > 0) {
+      if (
+        emptyFields.includes(' title') ||
+        emptyFields.includes(' description ') ||
+        emptyFields.includes(' location ')
+      ) {
+        return [
+          setEmptyFields(emptyFields),
+          setError(`Please fill in the fields: ${emptyFields} `),
+        ];
+      }
+    }
+
     if (currentId) {
       dispatch(updatePost(currentId, input));
     } else {
-      //error message
-      let emptyFields = [];
-
-      emptyFields.map((emptyField) => console.log(emptyField));
-
-      if (!input.title) {
-        emptyFields.push(' title');
-      }
-      if (!input.description) {
-        emptyFields.push(' description ');
-      }
-      if (!input.location) {
-        emptyFields.push(' location ');
-      }
-      if (emptyFields.length > 0) {
-        if (
-          emptyFields.includes(' title') ||
-          emptyFields.includes(' description ') ||
-          emptyFields.includes(' location ')
-        ) {
-          return [
-            setEmptyFields(emptyFields),
-            setError(`Please fill in the fields: ${emptyFields} `),
-          ];
-        }
-      }
-
       dispatch(createPost(input));
     }
 
@@ -80,9 +78,10 @@ const Form = ({ currentId, setCurrentId }) => {
     clearFields();
   };
 
-  const handleChange = (e) => {
+  const handleChange = async (e) => {
     setInput((prevState) => ({
       ...prevState,
+
       [e.target.name]: e.target.value,
     }));
   };
@@ -124,16 +123,10 @@ const Form = ({ currentId, setCurrentId }) => {
         <label>location</label>
       </div>
       <div className="app__cart-form">
-        {/* <FileBase 
+        <FileBase64
           type="file"
-          multiple= {false}
-          onDone={(base64) => setInput({ ...input, selectedFile: base64})}
-        /> */}
-        <input
-          name="image"
-          type="text"
-          value={input.image}
-          onChange={handleChange}
+          multiple={false}
+          onDone={({ base64 }) => setInput({ ...input, image: base64 })}
         />
         <label>image url</label>
       </div>

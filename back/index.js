@@ -1,5 +1,5 @@
 const express = require('express');
-
+const bodyParser = require('body-parser');
 const path = require('path');
 
 const mongoose = require('mongoose');
@@ -15,6 +15,9 @@ dotenv.config();
 const app = express();
 
 //config
+app.use(bodyParser.json({ limit: '30mb', extended: true }));
+app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }));
+
 app.use(cors());
 app.use(express.json());
 
@@ -41,7 +44,10 @@ if (process.env.NODE_ENV === 'production') {
 const PORT = process.env.PORT || 3000;
 
 mongoose
-  .connect(process.env.CONNECTDB_URL)
+  .connect(process.env.CONNECTDB_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() =>
     app.listen(PORT, () =>
       console.log(`App runs on: http://localhost:${PORT}/`)
