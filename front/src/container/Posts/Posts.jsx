@@ -15,7 +15,7 @@ const Posts = ({ setCurrentId }) => {
         <div className="loading-wrap">
           <Grid color="grey" height={40} width={80} />
           <p>
-            Here is no posts yet. <br />
+            There are no posts yet. <br />
           </p>
         </div>
       ) : (

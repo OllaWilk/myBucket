@@ -10,7 +10,7 @@ const Footer = () => {
       <p>@ created by:</p>
       <div className="app__footer-links">
         <BsGithub />
-        <a href="https://github.com/OllaWilk">Aleksandra Wilk</a>
+        <a href="https://github.com/OllaWilk/myBucket">Aleksandra Wilk</a>
       </div>
     </footer>
   );

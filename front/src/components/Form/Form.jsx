@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import FileBase64 from 'react-file-base64';
+import { MdAddAPhoto } from 'react-icons/md';
 
 import { createPost, updatePost } from '../../actions/posts';
 
@@ -42,8 +42,6 @@ const Form = ({ currentId, setCurrentId }) => {
     e.preventDefault();
 
     let emptyFields = [];
-
-    emptyFields.map((emptyField) => console.log(emptyField));
 
     if (!input.title) {
       emptyFields.push(' title');
@@ -86,6 +84,28 @@ const Form = ({ currentId, setCurrentId }) => {
     }));
   };
 
+  const uploadImage = async (e) => {
+    const file = e.target.files[0];
+    const base64 = await convertBase64(file);
+
+    return setInput({ ...input, image: base64 });
+  };
+
+  const convertBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <h3>
@@ -123,12 +143,16 @@ const Form = ({ currentId, setCurrentId }) => {
         <label>location</label>
       </div>
       <div className="app__cart-form">
-        <FileBase64
-          type="file"
-          multiple={false}
-          onDone={({ base64 }) => setInput({ ...input, image: base64 })}
-        />
-        <label>image url</label>
+        <label className="app__cart-form-choose-file">
+          <MdAddAPhoto /> Select Photo
+          <input
+            type="file"
+            onChange={(e) => {
+              uploadImage(e);
+            }}
+          />
+        </label>
+        <img src={input.image} height="200px" alt={setInput.image} />
       </div>
 
       <button type="submit">send</button>

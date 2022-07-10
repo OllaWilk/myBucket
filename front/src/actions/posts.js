@@ -23,6 +23,7 @@ export const createPost = (post) => async (dispatch) => {
     const data = await response.data;
 
     dispatch({ type: CREATE_POST, payload: data });
+    console.log('Sucess! Post added');
   } catch (err) {
     console.log('Fill the fields', err);
   }
@@ -32,7 +33,11 @@ export const updatePost = (id, post) => async (dispatch) => {
   try {
     const { data } = await api.updatePost(id, post);
 
-    dispatch({ type: UPDATE_POST, payload: data });
+    dispatch({
+      type: UPDATE_POST,
+      payload: data,
+    });
+    console.log('Sucess! Post updated');
   } catch (err) {
     console.log("Can't update post", err);
   }
@@ -43,6 +48,7 @@ export const deletePost = (id) => async (dispatch) => {
     await api.deletePost(id);
 
     dispatch({ type: DELETE_POST, payload: id });
+    console.log('Sucess! Post deleted');
   } catch (err) {
     console.log("Can't delete post", err);
   }

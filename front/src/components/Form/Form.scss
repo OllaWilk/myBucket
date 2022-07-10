@@ -26,6 +26,7 @@ form {
       color: $color-main;
       width: 100%;
       text-align: start;
+      cursor: pointer;
     }
 
     input {
@@ -37,6 +38,22 @@ form {
       outline: none;
       &::placeholder {
         font-size: $base-size;
+      }
+
+      &:last-child {
+        display: none;
+      }
+    }
+
+    .app__cart-form-choose-file {
+      @include flex(row, flex-start, flex-end);
+      height: 78px;
+      padding-top: 20px;
+
+      svg {
+        width: 20px;
+        height: 20px;
+        margin-right: 0.5rem;
       }
     }
 
@@ -72,6 +89,7 @@ form {
     cursor: pointer;
     transition: $transition;
     text-transform: uppercase;
+    padding: 10px 0;
 
     @include lg-max {
       margin-top: 2rem;

@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+
+import { getPosts } from '../../actions/posts';
+
 import { Posts } from '../../container';
 import { Form, IkonText } from '../../components';
 
 import { BiAddToQueue } from 'react-icons/bi';
 import './Board.scss';
 
-const Board = ({ currentId, setCurrentId }) => {
+const Board = () => {
+  const [currentId, setCurrentId] = useState(null);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [currentId, dispatch]);
+
   return (
     <div className="container">
       <Posts setCurrentId={setCurrentId} />

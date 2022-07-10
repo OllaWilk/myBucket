@@ -5,9 +5,9 @@ import './Home.scss';
 
 const Home = () => {
   return (
-    <>
+    <div>
       <About />
-    </>
+    </div>
   );
 };
 

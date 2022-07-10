@@ -11,18 +11,10 @@
     box-shadow: none;
     margin: 0;
     height: auto;
+    padding-top: 40px;
 
-    .app__cart-form {
-      input {
-        box-shadow: $shadow;
-        width: 400px;
-        padding-left: 10px;
-        margin-bottom: 1rem;
-      }
-
-      label {
-        color: $color-dark;
-      }
+    @include sm-max {
+      padding: 8px;
     }
 
     .app__login-switch {
@@ -38,6 +30,7 @@
     }
 
     button {
+      background-color: $color-dark;
       &:hover {
         background-color: $color-gradient-one;
         border: 1px solid $color-gradient-one;
