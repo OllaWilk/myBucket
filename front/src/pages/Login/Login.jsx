@@ -37,8 +37,8 @@ const Login = () => {
     e.preventDefault();
     console.log(loginInput);
 
-    if (isLogin) {
-      dispatch(login(loginInput, navigate));
+    if (!isLogin) {
+      dispatch(login(loginInput, navigate('/board', { replace: true })));
     } else {
       dispatch(signup(loginInput, navigate('/board', { replace: true })));
     }

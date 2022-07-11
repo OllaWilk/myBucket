@@ -47,7 +47,7 @@ const signupUser = async (req, res) => {
 
     res.status(200).json(user, token);
   } catch (error) {
-    return res.status(404).json('Sth went wrong', { message: error.message });
+    return res.status(404).json({ message: error.message });
   }
 };
 

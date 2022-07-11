@@ -1,9 +1,14 @@
 import axios from 'axios';
 
-const url = 'http://localhost:3000/api/posts';
+const API = axios.create({
+  baseURL: 'https://mybucket-app-alex-wilk.herokuapp.com',
+});
 
-export const fetchPosts = () => axios.get(url);
-export const createPost = (newPost) => axios.post(url, newPost);
+export const fetchPosts = () => API.get('/api/posts');
+export const createPost = (newPost) => API.post('/api/posts', newPost);
 export const updatePost = (id, updatedPost) =>
-  axios.patch(`${url}/${id}`, updatedPost);
-export const deletePost = (id) => axios.delete(`${url}/${id}`);
+  API.patch(`/api/posts/${id}`, updatedPost);
+export const deletePost = (id) => API.delete(`/api/posts/${id}`);
+
+export const logIn = (loginInput) => API.post('/api/users/login', loginInput);
+export const signUp = (loginInput) => API.post('/api/users/signup', loginInput);

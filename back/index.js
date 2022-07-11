@@ -27,7 +27,9 @@ app.use((req, res, next) => {
 });
 
 //read routes
-
+app.get('/', (req, res) => {
+  res.send('Hello to myBucket API');
+});
 app.use('/api/posts', postsRoutes);
 app.use('/api/users', usersRoutes);
 
