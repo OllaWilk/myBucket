@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-
+const jwt = require('jsonwebtoken');
 const User = require('../models/userModule');
 
 const saltRounds = 10;
@@ -15,43 +15,43 @@ const getAllUsers = async (req, res) => {
   }
 };
 
+// post new users
 const signupUser = async (req, res) => {
-  // Filter users. check if user exists
-
-  const { name, email, password } = req.body;
+  const { name, email, password, confirmPassword } = req.body;
 
   try {
+    //check if user exists
+
     const existingUser = await User.findOne({ email });
 
-    if (existingUser) {
+    if (existingUser)
       return res
         .status(400)
         .json({ message: 'User Already Exists. Pleas Login' });
-    }
-  } catch {
-    return res.status(404).json({ message: error.message });
-  }
 
-  // Create user.
+    if (password !== confirmPassword)
+      return res.status(400).json({ message: 'Passwords do not match' });
 
-  try {
+    // create new user
     const hash = bcrypt.hashSync(password, saltRounds);
 
     const user = await User.create({
       name,
       email,
       password: hash,
-      blogs: [],
     });
 
-    // const hash = bcrypt.hashSync(password, saltRounds);
+    const token = jwt.sign({ email: user.email, id: user._id }, 'test', {
+      expiresIn: '1h',
+    });
 
-    res.status(201).json(user);
+    res.status(200).json(user, token);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    return res.status(404).json('Sth went wrong', { message: error.message });
   }
 };
 
+// post login user
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
@@ -64,14 +64,19 @@ const loginUser = async (req, res) => {
         .json({ message: "Couldn't find user by this email" });
     }
 
-    const correctPassword = bcrypt.compareSync(password, user.password);
+    const correctPassword = await bcrypt.compareSync(password, user.password);
+
     if (!correctPassword) {
       return res.status(400).json({ message: 'Incorrect Password' });
     }
 
-    res.status(200).json({ message: 'Loged in', user: user });
+    const token = jwt.sign({ email: user.email, id: user._id }, 'test', {
+      expiresIn: '1h',
+    });
+
+    res.status(200).json({ message: 'Loged in', token });
   } catch {
-    res.status(409).json({ message: error.message });
+    res.status(500).json({ message: 'Something went wrong' });
   }
 };
 module.exports = {
