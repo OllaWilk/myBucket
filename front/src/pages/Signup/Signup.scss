@@ -1,0 +1,67 @@
+// @import '../../styles/settings.scss';
+// @import '../../styles/mixins.scss';
+
+// .app__login-form {
+//   height: 100vh;
+
+//   @include flex(column, center, center);
+
+//   form {
+//     background-color: transparent;
+//     box-shadow: none;
+//     margin: 0;
+//     height: auto;
+//     padding-top: 40px;
+
+//     @include sm-max {
+//       padding: 8px;
+//     }
+
+//     .app__login-switch {
+//       cursor: pointer;
+//       margin-top: 10px;
+
+//       span {
+//         text-decoration: underline;
+//         &:hover {
+//           color: $color-gradient-one;
+//         }
+//       }
+//     }
+
+//     button {
+//       background-color: $color-dark;
+//       &:hover {
+//         background-color: $color-gradient-one;
+//         border: 1px solid $color-gradient-one;
+//         color: $color-light;
+//       }
+//     }
+//   }
+//   svg {
+//     width: 80px;
+//     height: 80px;
+//     @include gradient;
+//     color: black;
+//     color: $color-light;
+//     border-radius: 50%;
+//     margin-bottom: 1rem;
+//   }
+// }
+
+// .error {
+//   border: 2px solid $color-gradient-one;
+//   padding: 1rem;
+//   margin: 1rem 0;
+//   background-color: $color-light;
+// }
+
+// .no-error {
+//   display: none;
+// }
+
+// .app__auth-welcom {
+//   @include flex(column, center, center);
+//   width: 100vw;
+//   height: 100vh;
+// }

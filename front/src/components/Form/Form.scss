@@ -47,13 +47,17 @@ form {
 
     .app__cart-form-choose-file {
       @include flex(row, flex-start, flex-end);
-      height: 78px;
+      height: 60px;
       padding-top: 20px;
 
       svg {
         width: 20px;
         height: 20px;
         margin-right: 0.5rem;
+      }
+
+      img {
+        height: 100px;
       }
     }
 

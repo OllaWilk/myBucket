@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/userModule');
 
 const saltRounds = 10;
+const secret = 'test';
 
 // get all users
 const getAllUsers = async (req, res) => {
@@ -29,11 +30,12 @@ const signupUser = async (req, res) => {
         .status(400)
         .json({ message: 'User Already Exists. Pleas Login' });
 
+    const hash = bcrypt.hashSync(password, saltRounds);
+
     if (password !== confirmPassword)
       return res.status(400).json({ message: 'Passwords do not match' });
 
     // create new user
-    const hash = bcrypt.hashSync(password, saltRounds);
 
     const user = await User.create({
       name,
@@ -41,13 +43,14 @@ const signupUser = async (req, res) => {
       password: hash,
     });
 
-    const token = jwt.sign({ email: user.email, id: user._id }, 'test', {
+    const token = jwt.sign({ email: user.email, id: user._id }, secret, {
       expiresIn: '1h',
     });
 
     res.status(200).json(user, token);
   } catch (error) {
-    return res.status(404).json({ message: error.message });
+    console.log(error);
+    return res.status(500).json({ message: error.message });
   }
 };
 
@@ -70,12 +73,13 @@ const loginUser = async (req, res) => {
       return res.status(400).json({ message: 'Incorrect Password' });
     }
 
-    const token = jwt.sign({ email: user.email, id: user._id }, 'test', {
+    const token = jwt.sign({ email: user.email, id: user._id }, secret, {
       expiresIn: '1h',
     });
+    res.status(200).json({ result: user, token });
+  } catch (error) {
+    console.log(error);
 
-    res.status(200).json({ message: 'Loged in', token });
-  } catch {
     res.status(500).json({ message: 'Something went wrong' });
   }
 };

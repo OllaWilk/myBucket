@@ -1,25 +1,29 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { GoogleLogin, googleLogout } from '@react-oauth/google';
 
 import { BiUser } from 'react-icons/bi';
-import { AiOutlineMail, AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
-
-import { API } from '../../api/index';
+import {
+  AiOutlineMail,
+  AiFillEyeInvisible,
+  AiFillEye,
+  AiOutlineUserAdd,
+} from 'react-icons/ai';
 import AuthContext from '../../context/AuthProvider';
-import './Login.scss';
-import axios from 'axios';
 
-const Login = () => {
+import './Signup.scss';
+
+const Signup = () => {
   const { setAuth } = useContext(AuthContext);
   const userRef = useRef();
   const errRef = useRef();
 
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
 
-  const [isSignup, setIsSignup] = useState(false);
   const [showPassword, setShowPassword] = useState(true);
 
   useEffect(() => {
@@ -28,36 +32,33 @@ const Login = () => {
 
   useEffect(() => {
     setError('');
-  }, [email, password]);
+  }, [email, password, name]);
 
   const handleShowPassword = () => setShowPassword(!showPassword);
-  const toggleMode = () => setIsSignup(!isSignup);
+  // const toggleMode = () => setIsSignup(!isSignup);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = { email, password };
+    const user = { email, password, name };
 
     try {
       const response = await fetch(
-        'http://mybucket-app-alex-wilk.herokuapp.com/api/users/login',
+        'http://mybucket-app-alex-wilk.herokuapp.com/api/users/signup',
         {
           method: 'POST',
           body: JSON.stringify(user),
           'Content-Type': 'application/json',
           withCredentials: true,
         }
-
-        // JSON.stringify({ email, password }),
-        // {
-        //   headers: { 'Content-Type': 'applicatio/json' },
-        //   withCredentials: false,
-        // }
       );
       console.log(response);
       console.log(JSON.stringify(response?.data));
       console.log(JSON.stringify(response));
+
       const accessToken = response?.data.accessToken;
-      setAuth({ email, password, accessToken });
+
+      setAuth({ name, email, password, accessToken });
+      setName('');
       setEmail('');
       setPassword('');
     } catch (err) {
@@ -71,33 +72,40 @@ const Login = () => {
         setError('Login Failed');
       }
 
-      errRef.current.focus();
+      errRef.current.focus(null);
     }
 
     // setSuccess(true);
   };
 
-  const handleChange = (e) => {};
-
   return (
     <>
       {success ? (
         <section className="app__auth-welcom">
-          <h1> You are logged in!</h1>
+          <h1> You are Sign up!</h1>
           <br />
           <Link to={'/board'}>Go to Board page</Link>
         </section>
       ) : (
         <div className="container app__login-form">
-          <BiUser />
-          <p
-            ref={errRef}
-            className={error ? 'error' : 'no-error'}
-            aria-live="assertive"
-          >
-            {error}
-          </p>
+          <p>{error}</p>
+
           <form onSubmit={handleSubmit}>
+            <div className="app__login-cart-form ">
+              <input
+                type="text"
+                id="name"
+                ref={userRef}
+                // autoComplete="off"
+                placeholder="name"
+                onChange={(e) => setEmail(e.target.value)}
+                value={name}
+                // required
+              />
+              <label htmlFor="email" className="password-ikon">
+                <AiOutlineUserAdd />
+              </label>
+            </div>
             <div className="app__login-cart-form ">
               <input
                 type="text"
@@ -129,10 +137,16 @@ const Login = () => {
                 {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
               </label>
             </div>
-            <button type="submit">login</button>
+            <div className="app__login-cart-form ">
+              <GoogleLogin
+                onSuccess={() => {}}
+                onError={(response) => console.log(response)}
+              />
+            </div>
+            <button type="submit">sign up</button>
             <div className="app__login-switch">
-              <Link to={'/signup'}>
-                Don't have an account yet? <span>Sign up</span>
+              <Link to={'/login'}>
+                You have an account. <span>Login</span>
               </Link>
             </div>
           </form>
@@ -142,4 +156,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;

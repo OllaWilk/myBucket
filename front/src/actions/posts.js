@@ -23,6 +23,7 @@ export const createPost = (post) => async (dispatch) => {
     const data = await response.data;
 
     dispatch({ type: CREATE_POST, payload: data });
+
     console.log('Sucess! Post added');
   } catch (err) {
     console.log('Fill the fields', err);

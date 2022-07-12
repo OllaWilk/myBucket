@@ -1,3 +1,7 @@
+https://app.netlify.com/sites/fascinating-longma-30adbf/settings/domain
+
+https://mybucket-app-alex-wilk.herokuapp.com/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

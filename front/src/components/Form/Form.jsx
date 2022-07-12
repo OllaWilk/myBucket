@@ -152,14 +152,14 @@ const Form = ({ currentId, setCurrentId }) => {
             }}
           />
         </label>
-        <img src={input.image} height="200px" alt={setInput.image} />
+        <img src={input.image} height="130px" alt={setInput.image} />
       </div>
 
       <button type="submit">send</button>
       <div className="app__clear-btn" onClick={clearFields}>
         clear
       </div>
-      <Link className="app__close-btn" to={'/posts'}>
+      <Link className="app__close-btn" to={'/board'}>
         close form
       </Link>
       {error && <div className="app__form-error-message">{error}</div>}

@@ -4,9 +4,7 @@ const secret = 'test';
 
 const auth = async (req, res, next) => {
   try {
-    if (req.headers.authorization) {
-      const token = req.headers.authorization.split(' ')[1];
-    }
+    const token = req.headers.authorization.split(' ')[1];
     const isCustomAuth = token.length < 500;
 
     let decodedData;
@@ -26,4 +24,5 @@ const auth = async (req, res, next) => {
     console.log(error);
   }
 };
+
 module.exports = auth;
