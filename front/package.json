@@ -4,6 +4,7 @@
   "private": false,
   "description": "",
   "main": "index.js",
+  "proxy": "http://mybucket-app-alex-wilk.herokuapp.com",
   "scripts": {
     "dev": "react-scripts start",
     "start": "serve -s build",

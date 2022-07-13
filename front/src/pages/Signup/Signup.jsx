@@ -27,7 +27,7 @@ const Signup = () => {
   const [showPassword, setShowPassword] = useState(true);
 
   useEffect(() => {
-    userRef.current?.focus();
+    userRef.current?.focus(null);
   }, []);
 
   useEffect(() => {

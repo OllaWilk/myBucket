@@ -1,3 +1,7 @@
+// import { createContext, useState } from 'react';
+
+// const authReducer = (auth, setAuth) => {};
+
 import * as actionType from '../constants/actionTypes';
 
 const authReducer = (state = { authData: null }, action) => {

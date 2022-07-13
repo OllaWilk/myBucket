@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 import { BiUser } from 'react-icons/bi';
 import { AiOutlineMail, AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
@@ -7,7 +8,6 @@ import { AiOutlineMail, AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
 import { API } from '../../api/index';
 import AuthContext from '../../context/AuthProvider';
 import './Login.scss';
-import axios from 'axios';
 
 const Login = () => {
   const { setAuth } = useContext(AuthContext);
@@ -23,7 +23,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(true);
 
   useEffect(() => {
-    userRef.current?.focus();
+    userRef.current.focus();
   }, []);
 
   useEffect(() => {
@@ -35,29 +35,22 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = { email, password };
+    // const user = { email, password };
 
     try {
-      const response = await fetch(
-        'http://mybucket-app-alex-wilk.herokuapp.com/api/users/login',
+      const response = await axios.post(
+        'mybucket-app-alex-wilk.herokuapp.com/api/users/login',
+        JSON.stringify({ email, password }),
         {
-          method: 'POST',
-          body: JSON.stringify(user),
-          'Content-Type': 'application/json',
+          headers: { 'Content-Type': 'application/json' },
           withCredentials: true,
         }
-
-        // JSON.stringify({ email, password }),
-        // {
-        //   headers: { 'Content-Type': 'applicatio/json' },
-        //   withCredentials: false,
-        // }
       );
       console.log(response);
       console.log(JSON.stringify(response?.data));
       console.log(JSON.stringify(response));
-      const accessToken = response?.data.accessToken;
-      setAuth({ email, password, accessToken });
+
+      setAuth({ email, password });
       setEmail('');
       setPassword('');
     } catch (err) {

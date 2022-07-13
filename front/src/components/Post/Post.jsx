@@ -31,7 +31,7 @@ const Post = ({ post, setCurrentId }) => {
           <span onClick={() => dispatch(deletePost(post._id))}>
             <FaTrashAlt />
           </span>
-          <span onClick={() => setCurrentId(post._id)}>
+          <span onClick={() => dispatch(setCurrentId(post._id))}>
             <FaEdit />
           </span>
         </div>
